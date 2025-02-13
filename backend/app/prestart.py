@@ -7,7 +7,6 @@ from pathlib import Path
 
 from alembic.config import Config
 from alembic import command
-
 from app.core.config import ROOT
 
 
