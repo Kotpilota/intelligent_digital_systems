@@ -3,47 +3,24 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-<<<<<<< HEAD
-}
-
-body {
-=======
   }
 
   body {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
     padding: 20px;
-<<<<<<< HEAD
-}
-
-.container {
-=======
   }
 
   .container {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     max-width: 700px;
     width: 100%;
     background: #fff;
     padding: 25px 30px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-<<<<<<< HEAD
-}
-
-.container .title {
-    font-size: 25px;
-    font-weight: 500;
-    position: relative;
-}
-
-.container .title::before {
-=======
   }
 
   .container .title {
@@ -53,7 +30,6 @@ body {
   }
 
   .container .title::before {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     content: '';
     position: absolute;
     left: 0;
@@ -61,25 +37,6 @@ body {
     height: 3px;
     width: 30px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
-<<<<<<< HEAD
-}
-
-.form {
-    margin-top: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-.input-group input {
-=======
   }
 
   .form {
@@ -97,7 +54,6 @@ body {
   }
 
   .input-group input {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     height: 45px;
     width: 100%;
     outline: none;
@@ -106,15 +62,6 @@ body {
     font-size: 16px;
     border-radius: 5px;
     transition: all 0.3s ease;
-<<<<<<< HEAD
-}
-
-.input-group input:focus {
-    border-color: #9b59b6;
-}
-
-.button {
-=======
   }
 
   .input-group input:focus {
@@ -122,7 +69,6 @@ body {
   }
 
   .button {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     height: 45px;
     margin: 15px 0;
     width: 100%;
@@ -134,47 +80,25 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-<<<<<<< HEAD
-}
-
-.button:hover {
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
-}
-=======
   }
 
   .button:hover {
     background: linear-gradient(-135deg, #71b7e6, #9b59b6);
   }
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
 
   @media (max-width: 584px) {
     .container {
       max-width: 100%;
     }
-<<<<<<< HEAD
-}
-
-.error {
-=======
   }
 
   .error {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     color: #ff0000;
     font-size: 12px;
     margin-top: 5px;
     display: none;
-<<<<<<< HEAD
-}
-
-.input-group.error input {
-    border-color: #ff0000;
-}
-=======
   }
 
   .input-group.error input {
     border-color: #ff0000;
   }
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd

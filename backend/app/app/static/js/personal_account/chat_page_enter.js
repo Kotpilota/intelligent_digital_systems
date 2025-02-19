@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> e23564bfb991c86043ff3d49617e1900305438b0
 document.addEventListener('DOMContentLoaded', function() {
     const userItems = document.querySelectorAll('.user-item');
     const chatHeader = document.querySelector('.chat-header h3');
@@ -46,8 +42,4 @@ document.addEventListener('DOMContentLoaded', function() {
             sendMessage();
         }
     });
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> e23564bfb991c86043ff3d49617e1900305438b0

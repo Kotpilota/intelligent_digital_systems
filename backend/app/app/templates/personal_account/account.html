@@ -1,16 +1,17 @@
+<!DOCTYPE html5>
 <html>
 <head>
-  <base href="/">Я создам современный личный кабинет сотрудника IT-компании с основными функциями. Вот полный интерактивный код:
+ <!-- <base href="/">Я создам современный личный кабинет сотрудника IT-компании с основными функциями. Вот полный интерактивный код:
+```html>-->
 
-```html
-<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IT Employee Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="C:/project_x/intelligent_digital_systems/backend/app/app/static/styles/personal_account/pers_acc.css">
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles/personal_account/account.css') }}">
+
 </head>
 <body class="bg-gray-50">
 
@@ -230,55 +231,6 @@
     </main>
   </div>
 
-  <script>
-    // Обработка уведомлений
-    document.getElementById('notifications').addEventListener('click', () => {
-      alert('Новых уведомлений нет');
-    });
-
-    // Анимация появления карточек статистики
-    document.addEventListener('DOMContentLoaded', () => {
-      const statsCards = document.querySelectorAll('.stats-card');
-      statsCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-      });
-    });
-
-    // Интерактивность проектных карточек
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-4px)';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
-      });
-    });
-  </script>
+  <script src="{{ url_for('static', path='/js/personal_account/account.js') }}"></script>
 </body>
 </html>
-```
-
-Этот код создает современный личный кабинет сотрудника IT-компании со следующими функциями:
-
-1. Адаптивный дизайн с использованием Tailwind CSS
-2. Интерактивное боковое меню
-3. Карточки статистики с анимацией
-4. Секция текущих проектов с прогресс-барами
-5. Таблица последних задач
-6. Уведомления
-7. Интерактивные элементы с hover-эффектами
-8. SVG иконки
-9. Responsive layout
-
-Основные особенности:
-
-- Современный минималистичный дизайн
-- Анимации и интерактивность
-- Полностью рабочий код
-- Оптимизация под мобильные устройства
-- Модульная структура
-- CSS-анимации для улучшения UX
-- Семантическая верстка
-
-Для использования просто сохраните код в файл .html и откройте его в браузере. Все стили и скрипты встроены, внешние зависимости подключаются через CDN.

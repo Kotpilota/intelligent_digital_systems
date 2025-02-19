@@ -7,6 +7,7 @@ from fastapi import HTTPException
 import re
 from app.schemas.employment_level import Employment_Level
 from app.schemas.employment_type import Employment_Type
+from app.schemas.location import Location
 
 class JobBase(BaseModel):
 
@@ -16,6 +17,7 @@ class JobBase(BaseModel):
     salary: int = Field(..., description="")
     employment_level_id: int = Field(..., description="")
     employment_type_id: int = Field(..., description="")
+    location_id: int = Field(..., description="")
 
 
 # Properties to receive via API on creation
@@ -40,3 +42,4 @@ class JobInDBBase( JobBase):
 class Job(JobInDBBase):
     employment_level: Employment_Level
     employment_type: Employment_Type
+    location: Location

@@ -29,12 +29,12 @@ async def database_schema() -> Dict:
                 dct['type']= dct['type'].python_type.__name__
 
             # This query sums the sizes (in bytes) of all pages belonging to the table.
-            query = text("SELECT SUM(pgsize) AS total_size FROM dbstat WHERE name = :name;")
+            # query = text("SELECT SUM(pgsize) AS total_size FROM dbstat WHERE name = :name;")
             query_count = select(func.count()).select_from( text(table_name) )
 
 
-            size_result = await conn.execute(query, {"name": table_name})
-            table_size = size_result.scalar()
+            # size_result = await conn.execute(query, {"name": table_name})
+            # table_size = size_result.scalar()
 
             row_count_result = await conn.execute(query_count)
             row_count = row_count_result.scalar()
@@ -47,7 +47,8 @@ async def database_schema() -> Dict:
                 last_update = ""
 
 
-            options[table_name].insert(0, dict({"size":table_size, "row_count": row_count, "last_update":last_update}) )
+            # options[table_name].insert(0, dict({"size":table_size, "row_count": row_count, "last_update":last_update}) )
+            options[table_name].insert(0, dict({ "row_count": row_count, "last_update":last_update}) )
 
 
     return jsonable_encoder(options)

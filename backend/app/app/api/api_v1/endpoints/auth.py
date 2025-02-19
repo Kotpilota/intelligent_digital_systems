@@ -23,8 +23,17 @@ from app.models.user import User
 from app.schemas.auth import AuthPhoneForm
 from app.schemas import SessionData
 
+from fastapi.responses import HTMLResponse
+from pathlib import Path
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+
 
 router = APIRouter()
+
+BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
+TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
+
 
 
 @router.post("/register", response_model=schemas.user.User, status_code=201)  # 1
@@ -62,7 +71,7 @@ async def register(
 
 @router.post("/login", )  # response_model=app.schemas.user.User)
 # async def login(db: AsyncSession = Depends(deps.get_db), form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
-async def login(*, response: Response, db: AsyncSession = Depends(deps.get_db), form_data: AuthPhoneForm) -> Any:
+async def login(*, request: Request, response: Response, db: AsyncSession = Depends(deps.get_db), form_data: AuthPhoneForm) -> Any:
     """
     Get the JWT for a user with data from OAuth2 request form body.
     """
@@ -75,14 +84,25 @@ async def login(*, response: Response, db: AsyncSession = Depends(deps.get_db), 
 
     access_token = create_access_token(sub=user.id)
     response.set_cookie(key="users_access_token", value=access_token, httponly=True)
-    return {
+    user = jsonable_encoder(user)
+
+    data ={
             "ok": True,
             "access_token": access_token,  # 4
             "token_type": "bearer",
             "refresh_token": None,
             "message": "Авторизация успешна!",
-            "user": jsonable_encoder(user)
+            "user": user
         }
+    
+    if user['role_id'] == 1:
+        return TEMPLATES.TemplateResponse("personal_account/profile.html", {"request": request, "data": data})
+    elif user['role_id'] == 2:
+        return TEMPLATES.TemplateResponse("personal_account/account.html", {"request": request, "data": data})
+    elif user['role_id'] in [3, 4]:
+        return TEMPLATES.TemplateResponse("admin/dashboard.html", {"request": request, "data": data})
+    
+    
 
 @router.post("/logout")
 async def logout_user(response: Response):
