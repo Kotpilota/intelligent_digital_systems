@@ -12,13 +12,16 @@
 // }
 
 // console.log("Все куки:", $.cookie()); 
-
+/*
 function getCookie(key) {
     var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-    console.log(keyValue)   
+    console.log("Cookies: "+ $.cookie("ids_user_access_token"))   
     return keyValue ? keyValue[2] : null;
 }
-console.log(getCookie("ids_user_access_token"))
+    */
+
+
+
 async function profile_data() {
     try {
         const response = await fetch("http://localhost:8080/user/read", {

@@ -1,4 +1,4 @@
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Cookie
 from fastapi.security import HTTPAuthorizationCredentials
 from jose import JWTError, jwt
 from uuid import UUID, uuid4
@@ -46,7 +46,8 @@ def get_reddit_client() -> RedditClient:
 
 # async def get_current_user(db: AsyncSession = Depends(get_db), token: str = Depends(oauth2_scheme) ) -> User:
 async def get_current_user(db: AsyncSession = Depends(get_db),
-                           auth: Optional[HTTPAuthorizationCredentials] = Depends(get_bearer_token)
+                           auth: Optional[HTTPAuthorizationCredentials] = Depends(get_bearer_token),
+                           cookie = Cookie(...)
                            ) -> Optional[User]:
     # skipping for simplicity...
     try:
@@ -67,6 +68,8 @@ async def get_current_user(db: AsyncSession = Depends(get_db),
         # token_data = TokenData(username=username)
         userid: int = int(payload.get("sub"))
         token_data = TokenData(userid=userid)
+
+        print(f"\n\n\n >>>> Наши куки: {cookie}\n\n\n")
     except JWTError:
         raise CredentialsException
 
