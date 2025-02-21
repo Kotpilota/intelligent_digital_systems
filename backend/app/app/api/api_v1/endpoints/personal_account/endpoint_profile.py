@@ -16,4 +16,4 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 async def profile_page(request: Request,
                        current_user: User = Depends(deps.get_current_user)
                        ):
-    return TEMPLATES.TemplateResponse("personal_account/profile.html", {"request": request})
+    return TEMPLATES.TemplateResponse("personal_account/profile.html", {"request": request, "current_user": current_user})
