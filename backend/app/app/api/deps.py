@@ -1,4 +1,4 @@
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Cookie
 from fastapi.security import HTTPAuthorizationCredentials
 from jose import JWTError, jwt
 from uuid import UUID, uuid4
@@ -46,16 +46,17 @@ def get_reddit_client() -> RedditClient:
 
 # async def get_current_user(db: AsyncSession = Depends(get_db), token: str = Depends(oauth2_scheme) ) -> User:
 async def get_current_user(db: AsyncSession = Depends(get_db),
-                           auth: Optional[HTTPAuthorizationCredentials] = Depends(get_bearer_token)
+                           auth: Optional[HTTPAuthorizationCredentials] = Depends(get_bearer_token),
+                           ids_user_access_token:  str = Cookie(default=None)
                            ) -> Optional[User]:
     # skipping for simplicity...
     try:
-        if auth is None:
+        if auth is None and ids_user_access_token is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Bearer token missing or unknown",
             )
-        token = auth.credentials
+        token = ids_user_access_token if ids_user_access_token else auth.credentials
         print(f'token: {token}')
         payload = jwt.decode(
             token,
@@ -67,6 +68,7 @@ async def get_current_user(db: AsyncSession = Depends(get_db),
         # token_data = TokenData(username=username)
         userid: int = int(payload.get("sub"))
         token_data = TokenData(userid=userid)
+
     except JWTError:
         raise CredentialsException
 
