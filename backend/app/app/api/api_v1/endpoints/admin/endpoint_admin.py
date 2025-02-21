@@ -2,6 +2,9 @@ from fastapi import APIRouter
 from sqlalchemy import  inspect, text, select, func
 from fastapi.encoders import  jsonable_encoder
 
+from app.api import deps
+from app.models.user import User
+
 from app.db.session import engine
 from app.db.base_class import Base, get_class_by_table_name
 from typing import  Dict
