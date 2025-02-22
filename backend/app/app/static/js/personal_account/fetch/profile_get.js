@@ -23,12 +23,12 @@ function getCookie(key) {
 
 
 async function profile_data() {
+    console.log("data: ")
     try {
-        const response = await fetch("http://localhost:8080/user/read", {
+        const response = await fetch("/user/read", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                'Authorization': `Bearer ${getCookie("ids_user_access_token")}`
             },
         });
 
@@ -38,6 +38,7 @@ async function profile_data() {
         }
 
         const data = await response.json();
+        
         console.log(data);
     } catch (error) {
         console.error("Ошибка получения данных профиля:", error);

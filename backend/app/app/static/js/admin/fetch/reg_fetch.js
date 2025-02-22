@@ -1,8 +1,7 @@
-
 async function  regaccept() {
   
    
-  const res = await fetch("http://localhost:8080/admin/database_schema");
+  const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
   data =await res.json();
   console.log(data);
   let a=Object.keys(data)
@@ -13,6 +12,8 @@ async function  regaccept() {
       let db=data[namedb].length;
       let bd_size="-";
       let active="-";
+     
+  
       let table=document.querySelector(".table");
       let sidebar=document.querySelector(".sidebar");
     
@@ -22,9 +23,22 @@ async function  regaccept() {
       table.innerHTML+="<tr><td>"+namedb+"</td><td>"+db+"</td><td>"+bd_size+"</td><td>"+active+"<td><button class='btn btn-success'>Изменить</button><button class='btn btn-danger'>Удалить</button></td>"+"</tr>";
       }
       
-       sidebar.innerHTML+="<a href='#' class='nav-item1'>"+namedb+"</a>";
+      const link = document.createElement('a');
+      link.href = "#";
+      link.textContent = namedb;
+  
+    
+      link.classList.add('nav-item1');
+   
+  
+    
+      sidebar.appendChild(link);
         
-      
+      link.addEventListener("click", function() {
+        window.location.href = '/admin_db_tables';
+        localStorage.setItem("db", namedb); 
+      });
+  
     console.log(namedb,db,bd_size,active);
 
 
@@ -38,7 +52,7 @@ async function  regaccept() {
 async function page1() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://localhost:8080/admin/database_schema");
+const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -58,7 +72,7 @@ for(let i=5;i<a.length;i++){
 async function page2() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://localhost:8080/admin/database_schema");
+const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -78,7 +92,7 @@ for(let i=10;i<a.length;i++){
 async function page3() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://localhost:8080/admin/database_schema");
+const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -98,7 +112,7 @@ for(let i=15;i<a.length;i++){
 async function page4() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://localhost:8080/admin/database_schema");
+const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -118,7 +132,7 @@ for(let i=20;i<a.length;i++){
 async function page() {
   let table=document.querySelector(".table");
   table.innerHTML="";
-  const res = await fetch("http://localhost:8080/admin/database_schema");
+  const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
   data =await res.json();
   console.log(data);
   let a=Object.keys(data)
@@ -137,17 +151,7 @@ async function page() {
   } }
   
 
-regaccept().then( a=>{
-  const bd=document.querySelectorAll(".nav-item1");
-  console.log(bd);
-        bd.forEach(bd=>{
-       
-          bd.addEventListener("click",function(){
-            window.location.href = '/admin_db_tables';
-            localStorage.setItem("db",bd)
-          })});
-  
-        } )
+regaccept()
   
   document.querySelector(".page-btn0").addEventListener("click", page)
   document.querySelector(".page-btn1").addEventListener("click", page1)
