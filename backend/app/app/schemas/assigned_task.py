@@ -1,5 +1,5 @@
 from typing import Optional, Dict
-
+from datetime import datetime
 from pydantic import BaseModel, validator, EmailStr, field_validator, Field
 from datetime import datetime
 from fastapi.encoders import jsonable_encoder
@@ -16,6 +16,9 @@ class Assigned_TaskBase(BaseModel):
     task_status_id: int  = Field(..., description="")
     assigned_at: datetime  = Field(..., description="")
     deadline: datetime  = Field(..., description="")
+
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
 # Properties to receive via API on creation
 class Assigned_TaskCreate( Assigned_TaskBase):
