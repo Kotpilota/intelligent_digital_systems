@@ -1,31 +1,6 @@
-// import {$, jQuery} from 'jquery';
-// import 'jquery-cookie'; 
-
-// window.$ = $; 
-// window.jQuery = jQuery;
-
-// const cooca = $.cookie('ids_user_access_token'); 
-// console.log("Значение куки ids_user_access_token:", cooca);
-
-// if (cooca === null || cooca === undefined) { 
-//     alert("Кука не была установлена!");
-// }
-
-// console.log("Все куки:", $.cookie()); 
-/*
-function getCookie(key) {
-    var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-    console.log("Cookies: "+ $.cookie("ids_user_access_token"))   
-    return keyValue ? keyValue[2] : null;
-}
-    */
-
-
-
 async function profile_data() {
-    console.log("data: ")
     try {
-        const response = await fetch("/user/read", {
+        const response = await fetch("/auth/me", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -38,24 +13,51 @@ async function profile_data() {
         }
 
         const data = await response.json();
-        
-        console.log(data);
+
+        return data
     } catch (error) {
         console.error("Ошибка получения данных профиля:", error);
     }
 }
 
-function headers(set_cookie = false) {
-    let headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    };
+const obj_profile_data = await profile_data()
 
-    if (set_cookie) {
-        headers['Authorization'] = "Bearer " + $.cookie('remember_user_token');
+const profile_form = document.querySelectorAll(".form-control")
+
+Object.keys(obj_profile_data).forEach(function(key) {
+    if (key == "firstname"){
+        profile_form[0].value = obj_profile_data[key];
+        return
+    }else if (key == "lastname"){
+        profile_form[1].value = obj_profile_data[key];
+        return
+    }else if (key == "email"){
+        profile_form[2].value = obj_profile_data[key];
+        return
+    }else if (key == "phone"){
+        const number = `${obj_profile_data[key].slice(0, 2)} (${obj_profile_data[key].slice(2, 5)}) ${obj_profile_data[key].slice(5, 8)}-${obj_profile_data[key].slice(8, 10)}-${obj_profile_data[key].slice(10, 12)}`
+        profile_form[3].value = number
+        return
     }
-
-    return headers;
-}
-
-profile_data();
+    switch(obj_profile_data[key].name){
+        case "employee":
+            profile_form[4].value = "Сотрудник компании";
+            break;
+        case "teamlead":
+            profile_form[4].value = "Руководитель группы";
+            break;
+        case "admin":
+            profile_form[4].value = "Администратор системы";
+            break;
+        case "ceo":
+            profile_form[4].value = "Исполнительный директор";
+            break;
+        default:
+            profile_form[4].value = obj_profile_data[key].name;
+    }
+    if (key == "created_at"){
+        profile_form[5].value = `${obj_profile_data[key].slice(0, 10).split('-').reverse().join('.')}`;
+        return
+    }
+    return
+});
