@@ -9,11 +9,12 @@ from app.models.user import User
 
 router = APIRouter()
 
+
 @router.get("/read/{id}", response_model=Job)
 async def read_job(
     id: int,
     db: AsyncSession = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user)
+    current_user: User = Depends(deps.get_current_user),
 ) -> Any:
     """
     Get a job.
@@ -23,15 +24,17 @@ async def read_job(
         raise HTTPException(status_code=404, detail="job not found")
     return job
 
+
 @router.get("/read", response_model=List[Job])
 async def read_jobs(
     db: AsyncSession = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user)
+    current_user: User = Depends(deps.get_current_user),
 ) -> Any:
     """
     Get all jobs.
     """
     return await crud.job.get_all(db=db)
+
 
 @router.post("/create", response_model=Job)
 async def create_job(
@@ -44,6 +47,7 @@ async def create_job(
     Create a new job.
     """
     return await crud.job.create(db=db, obj_in=job_in)
+
 
 @router.put("/update/{id}", response_model=Job)
 async def update_job(
@@ -61,6 +65,7 @@ async def update_job(
         raise HTTPException(status_code=404, detail="job not found")
     job = await crud.job.update(db=db, db_obj=job, obj_in=job_in)
     return job
+
 
 @router.delete("/delete/{id}", response_model=Job)
 async def delete_job(
