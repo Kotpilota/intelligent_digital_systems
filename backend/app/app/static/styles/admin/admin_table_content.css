@@ -169,3 +169,54 @@
     color: white;
     border-color: var(--primary);
   }
+  .nav-item1{
+    display: flex;
+    flex-direction: column;
+    
+    padding: 0.75rem 1rem;
+    color: var(--secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s;
+  }
+  .table thead{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+  }
+  .table th{
+    padding: 0.75rem 1rem;
+    color: var(--secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s;
+  }
+.table tbody{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+css
+
+.table {
+  display: grid;
+  width: 100%;
+}
+
+.table thead, .table tbody {
+  display: contents; /* Важно: позволяет дочерним элементам grid влиять на всю таблицу */
+}
+
+.table th, .table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table thead th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
