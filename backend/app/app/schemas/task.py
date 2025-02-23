@@ -1,5 +1,5 @@
 from typing import Optional, Dict
-
+from datetime import datetime
 from pydantic import BaseModel, validator, EmailStr, field_validator, Field
 from app.schemas.role import Role
 from fastapi.encoders import jsonable_encoder
@@ -13,6 +13,10 @@ class TaskBase(BaseModel):
     name: str= Field(..., description="")
     description: str = Field(..., description="")
     project_id: int = Field(..., description="")
+
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+
 
 
 
