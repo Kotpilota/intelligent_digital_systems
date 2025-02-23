@@ -19,6 +19,7 @@
         </svg>
         Таблицы
       </a>
+      
     </nav>
   </aside>
 
@@ -41,45 +42,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>users</td>
-            <td>1,234</td>
-            <td>256 MB</td>
-            <td>2 часа назад</td>
-            <td>
-              <button class="btn btn-success">Просмотр</button>
-              <button class="btn btn-danger">Удалить</button>
-            </td>
-          </tr>
-          <tr>
-            <td>orders</td>
-            <td>5,678</td>
-            <td>512 MB</td>
-            <td>30 мин назад</td>
-            <td>
-              <button class="btn btn-success">Просмотр</button>
-              <button class="btn btn-danger">Удалить</button>
-            </td>
-          </tr>
-          <tr>
-            <td>products</td>
-            <td>891</td>
-            <td>128 MB</td>
-            <td>1 день назад</td>
-            <td>
-              <button class="btn btn-success">Просмотр</button>
-              <button class="btn btn-danger">Удалить</button>
-            </td>
-          </tr>
+         
         </tbody>
       </table>
 
       <div class="pagination">
-        <button class="page-btn active">1</button>
-        <button class="page-btn">2</button>
-        <button class="page-btn">3</button>
-        <button class="page-btn">...</button>
-        <button class="page-btn">10</button>
+        <button class="page-btn0 active">1</button>
+        <button class="page-btn1">2</button>
+        <button class="page-btn2">3</button>
+        <button class="page-btn3">4</button>
+        <button class="page-btn4">5</button>
       </div>
     </div>
   </main>
@@ -88,5 +60,5 @@
 <script src="{{ url_for('static', path='/js/admin/admin_table.js') }} ">
 
 </script>
-
+<script src="{{ url_for('static', path='/js/admin/fetch/reg_fetch.js') }}"></script>
 </body></html>

@@ -1,5 +1,5 @@
 from typing import Optional, Dict
-
+from datetime import datetime
 from pydantic import BaseModel, validator, EmailStr, field_validator, Field
 from app.schemas.role import Role
 from fastapi.encoders import jsonable_encoder
@@ -13,6 +13,8 @@ class Has_SkillBase(BaseModel):
     user_id: Optional[int] = Field(..., description="ID пользователя")
     skill_id: Optional[int] = Field(..., description="ID навыка")
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
 
 # Properties to receive via API on creation

@@ -13,6 +13,8 @@ class ProjectBase(BaseModel):
     started_at: datetime  = Field(..., description="")
     deadline: datetime  = Field(..., description="")
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
 # Properties to receive via API on creation
 class ProjectCreate( ProjectBase):

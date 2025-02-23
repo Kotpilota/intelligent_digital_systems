@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <!--<base href="https://admin-db-dashboard.example.com/">-->
@@ -32,9 +33,9 @@
 
   <main class="main">
     <div class="profile-header">
-      <div class="avatar">ИП</div>
+      <div class="avatar">{{ current_user.firstname[0] }}{{ current_user.lastname[0] }}</div>
       <div class="profile-info">
-        <h1>Иван Петров</h1>
+        <h1>{{ current_user.firstname }} {{ current_user.lastname }}</h1>
         <span class="profile-status">Активный администратор</span>
       </div>
     </div>
@@ -44,27 +45,27 @@
       <form id="profile-form" class="form-grid">
         <div class="form-group">
           <label>Имя</label>
-          <input type="text" class="form-control" value="Иван" required>
+          <input type="text" class="form-control" id="firstname" value="Not found" required>
         </div>
         <div class="form-group">
           <label>Фамилия</label>
-          <input type="text" class="form-control" value="Петров" required>
+          <input type="text" class="form-control" id="lastname" value="Not found" required>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" class="form-control" value="ivan@example.com" required>
+          <input type="email" class="form-control" id="email" value="Not found" required>
         </div>
         <div class="form-group">
           <label>Телефон</label>
-          <input type="tel" class="form-control" value="+7 (999) 123-45-67">
+          <input type="tel" class="form-control" id="phone-number" value="Not found">
         </div>
         <div class="form-group">
           <label>Должность</label>
-          <input type="text" class="form-control" value="Администратор системы" readonly>
+          <input type="text" class="form-control" id="role" value="Not found" readonly>
         </div>
         <div class="form-group">
           <label>Дата регистрации</label>
-          <input type="text" class="form-control" value="01.01.2023" readonly>
+          <input type="text" class="form-control" id="reg-data" value="Not found" readonly> 
         </div>
       </form>
       <button class="btn btn-primary" id="save-profile">Сохранить изменения</button>
@@ -100,6 +101,7 @@
   </main>
 </div>
 
+<script type="module" src="{{ url_for('static', path='/js/personal_account/fetch/profile_get.js') }}"></script>
 <script src="{{ url_for('static', path='/js/personal_account/profile.js') }}"></script>
 
 </body>

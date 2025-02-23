@@ -1,6 +1,7 @@
 from pydantic import BaseModel, HttpUrl, Field
 from typing import Sequence, Optional, Dict
 from fastapi.encoders import jsonable_encoder
+from datetime import datetime
 
 class ExempleBase(BaseModel):
     string_attribute: str  = Field(..., description="")
@@ -8,6 +9,8 @@ class ExempleBase(BaseModel):
     float_attribute: float  = Field(..., description="")
     boolean_attribute: bool  = Field(..., description="")
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
 class ExempleCreate(ExempleBase):
     pass

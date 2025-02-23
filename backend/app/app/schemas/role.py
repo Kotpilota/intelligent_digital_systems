@@ -10,7 +10,8 @@ class RoleBase(BaseModel):
     # name: ClassVar[str]  = Field(..., description="")
     name: Optional[str] = Field(..., description="")
 
-
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
 
 # Properties to receive via API on creation

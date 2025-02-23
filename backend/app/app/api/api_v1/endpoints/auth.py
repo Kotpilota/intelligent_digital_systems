@@ -26,7 +26,7 @@ from app.schemas import SessionData
 from fastapi.responses import HTMLResponse
 from pathlib import Path
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse 
 
 
 router = APIRouter()
@@ -83,7 +83,7 @@ async def login(*, request: Request, response: Response, db: AsyncSession = Depe
         raise IncorrectPhoneOrPasswordException
 
     access_token = create_access_token(sub=user.id)
-    response.set_cookie(key="users_access_token", value=access_token, httponly=True)
+    response.set_cookie(key="ids_user_access_token", value=access_token, httponly=True)
     user = jsonable_encoder(user)
 
     data ={
@@ -95,18 +95,37 @@ async def login(*, request: Request, response: Response, db: AsyncSession = Depe
             "user": user
         }
     
+    """ 
     if user['role_id'] == 1:
         return TEMPLATES.TemplateResponse("personal_account/profile.html", {"request": request, "data": data})
     elif user['role_id'] == 2:
         return TEMPLATES.TemplateResponse("personal_account/account.html", {"request": request, "data": data})
     elif user['role_id'] in [3, 4]:
         return TEMPLATES.TemplateResponse("admin/dashboard.html", {"request": request, "data": data})
+    """
+
+    if user['role_id'] == 1:
+        response = RedirectResponse(url='/profile', status_code=200)
+        response.set_cookie(key="ids_user_access_token", value=access_token, httponly=True)
+        response.body = data
+        return response
     
+    elif user['role_id'] == 2:
+        response = RedirectResponse(url='/account', status_code=200)
+        response.set_cookie(key="ids_user_access_token", value=access_token, httponly=True)
+        response.body = data
+        return response
     
+    elif user['role_id'] in [3, 4]: 
+        response = RedirectResponse(url='/dashboard', status_code=200)
+        response.set_cookie(key="ids_user_access_token", value=access_token, httponly=True)
+        response.body = data
+        return response
+
 
 @router.post("/logout")
 async def logout_user(response: Response):
-    response.delete_cookie(key="users_access_token")
+    response.delete_cookie(key="ids_user_access_token")
     return {'message': 'Пользователь успешно вышел из системы'}
 
 
