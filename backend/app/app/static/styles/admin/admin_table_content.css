@@ -207,7 +207,7 @@ css
 }
 
 .table thead, .table tbody {
-  display: contents; /* Важно: позволяет дочерним элементам grid влиять на всю таблицу */
+  display: contents; 
 }
 
 .table th, .table td {
