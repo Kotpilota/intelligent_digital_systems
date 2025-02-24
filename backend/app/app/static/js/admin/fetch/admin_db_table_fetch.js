@@ -1,10 +1,8 @@
 const storedData = localStorage.getItem('db');
-
-console.log(storedData);
 let s=storedData.split('');
 s.pop()
 let name=s.join('');
-console.log(name);
+localStorage.setItem("endpointname", name);
 if (storedData) {
     document.querySelector(".namebd").textContent = "Записи таблицы " + storedData;
 
@@ -12,7 +10,7 @@ if (storedData) {
 async function regaccept() {
     await link()
     await perebor(storedData)
-    const res = await fetch(`http://www.intelligent-digital-systems.ru/${name}/read`);
+    const res = await fetch(`/${name}/read`);
     data = await res.json();
    await perebor2(storedData,data)
     
@@ -26,7 +24,7 @@ async function regaccept() {
 async function  link() {
 
    
-    const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+    const res = await fetch("/admin/database_schema");
     data =await res.json();
  
     let a=Object.keys(data)
@@ -55,7 +53,7 @@ async function  link() {
 async function  perebor(namebd) {
     let theadHTML = '<thead><tr>';
    
-    const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+    const res = await fetch("/admin/database_schema");
     data =await res.json();
 
     let a=Object.keys(data)
@@ -86,27 +84,20 @@ async function  perebor(namebd) {
 }
 async function  perebor2(namebd,data) {
     let tbodyHTML = '<tbody>';
-    const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+    const res = await fetch("/admin/database_schema");
     ff =await res.json();
 
     let a=Object.keys(ff)
    
 
     for(let i=0;i<a.length;i++){
-      
-        
+
         if(a[i]==namebd){
             for(let j=1;j<ff[namebd].length;j++){
                 let s=0
-                for (let j = 1; j < ff[namebd].length; j++) {
-                  let v=ff[namebd][j].name
-                    s+=1
-                
-                    
-                   
-                      
-                            
-                         
+                for (let j = 1; j < ff[namebd].length; j++) {      
+                s+=1
+
                             for(let l=0;l<data.length;l++){
                                 if (s<2){
                                     tbodyHTML+= `<tr>`
@@ -119,14 +110,7 @@ async function  perebor2(namebd,data) {
                                     tbodyHTML+= `</tr>`}
                                     
                                 }
-                                 
-                   
-                         
-                        
-                           
    
-                
-                    
                 } break}
                 tbodyHTML+=`</tbody>`;
                 document.querySelector(".table").innerHTML+= tbodyHTML;
