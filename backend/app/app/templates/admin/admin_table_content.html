@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/admin_table_content.css') }} ">
 </head>
 <body>
+
 <div class="dashboard">
   <aside class="sidebar">
     <nav>
@@ -48,6 +49,10 @@
         <button class="btn btn-primary">Добавить запись</button>
       </div>
 
+
+
+
+</div>
       <table class="table">
       
         
@@ -70,11 +75,18 @@
     </div>
   </main>
 </div>
+<div class="new-record">
+  <div class=" card1"><h2>Новая запись</h2>
+  <form class="form"></form>
+  <div class="btn-osn"> <button class="btn-rec">Сохранить</button>
+    <button class="btn-rec">Отмена</button></div></div>
+ 
 
+</div>
 <script src="{{ url_for('static', path='/js/admin/admin_table_content.js') }}">
 
 </script>
 <script src="{{ url_for('static', path='/js/admin/fetch/admin_db_table_fetch.js') }}"></script>
-
+<script src="{{ url_for('static', path='/js/admin/fetch/admin_db_table_zapis_fetch.js') }}"></script>
 
 </body></html>

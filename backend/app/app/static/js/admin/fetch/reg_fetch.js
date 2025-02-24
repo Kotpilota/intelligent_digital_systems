@@ -1,7 +1,7 @@
 async function  regaccept() {
   
    
-  const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+  const res = await fetch("/admin/database_schema");
   data =await res.json();
   console.log(data);
   let a=Object.keys(data)
@@ -52,7 +52,7 @@ async function  regaccept() {
 async function page1() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+const res = await fetch("/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -72,7 +72,7 @@ for(let i=5;i<a.length;i++){
 async function page2() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+const res = await fetch("/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -92,7 +92,7 @@ for(let i=10;i<a.length;i++){
 async function page3() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+const res = await fetch("/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -112,7 +112,7 @@ for(let i=15;i<a.length;i++){
 async function page4() {
 let table=document.querySelector(".table");
 table.innerHTML="";
-const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+const res = await fetch("/admin/database_schema");
 data =await res.json();
 console.log(data);
 let a=Object.keys(data)
@@ -132,7 +132,7 @@ for(let i=20;i<a.length;i++){
 async function page() {
   let table=document.querySelector(".table");
   table.innerHTML="";
-  const res = await fetch("http://www.intelligent-digital-systems.ru/admin/database_schema");
+  const res = await fetch("/admin/database_schema");
   data =await res.json();
   console.log(data);
   let a=Object.keys(data)
