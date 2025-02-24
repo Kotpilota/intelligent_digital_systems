@@ -17,10 +17,14 @@ from  app.api.api_v1.endpoints.common_part import (
     )
 
 from  app.api.api_v1.endpoints.personal_account import (
-    endpoint_account, endpoint_assigned_tasks, endpoint_chat_page_enter,
-    endpoint_chat_page_exit, endpoint_profile
+    endpoint_account, endpoint_chat_page_enter,
+    endpoint_chat_page_exit, endpoint_profile, endpoint_assigned_tasks_page
 )
-from app.api.api_v1.endpoints import endpoint_assigned_task, endpoint_employment_level, endpoint_employment_type, endpoint_has_skill, endpoint_location, endpoint_participant, endpoint_project, endpoint_project_document, endpoint_project_document_type, endpoint_skill, endpoint_skill_type
+from app.api.api_v1.endpoints import (endpoint_assigned_task, endpoint_employment_level, endpoint_employment_type, 
+                                      endpoint_has_skill, endpoint_location, endpoint_participant, endpoint_project, 
+                                      endpoint_project_document, endpoint_project_document_type, endpoint_skill, 
+                                      endpoint_skill_type)
+
 
 api_router = APIRouter()
 api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
@@ -76,7 +80,7 @@ api_router.include_router(endpoint_job_application.router, prefix="", tags=["job
 
 # personal_account page
 api_router.include_router(endpoint_account.router, prefix="", tags=["account"])
-api_router.include_router(endpoint_assigned_task.router, prefix="", tags=["assigned_tasks"])
+api_router.include_router(endpoint_assigned_tasks_page.router, prefix="", tags=["assigned_tasks_page"])
 api_router.include_router(endpoint_chat_page_enter.router, prefix="", tags=["chat_page_enter"])
 api_router.include_router(endpoint_chat_page_exit.router, prefix="", tags=["chat_page_exit"])
 api_router.include_router(endpoint_profile.router, prefix="", tags=["profile"])
