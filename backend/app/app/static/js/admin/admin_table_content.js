@@ -6,15 +6,9 @@ document.querySelector('.search').addEventListener('input', function(e) {
       const text = row.textContent.toLowerCase();
       row.style.display = text.includes(searchText) ? '' : 'none';
     });
-<<<<<<< HEAD
-});
-  
-document.querySelectorAll('.table th').forEach(header => {
-=======
   });
   
   document.querySelectorAll('.table th').forEach(header => {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     header.addEventListener('click', function() {
       const index = Array.from(this.parentNode.children).indexOf(this);
       const rows = Array.from(document.querySelectorAll('.table tbody tr'));
@@ -37,11 +31,7 @@ document.querySelectorAll('.table th').forEach(header => {
   
   document.querySelectorAll('.btn-danger').forEach(btn => {
     btn.addEventListener('click', function() {
-<<<<<<< HEAD
-      if (confirm('Âû óâåðåíû, ÷òî õîòèòå óäàëèòü ýòó çàïèñü?')) {
-=======
       if (confirm('Ð’Ñ‹ ÑƒÐ²ÐµÑ€ÐµÐ½Ñ‹, Ñ‡Ñ‚Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÑ‚Ñƒ Ð·Ð°Ð¿Ð¸ÑÑŒ?')) {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
         const row = this.closest('tr');
         row.style.opacity = '0';
         setTimeout(() => row.remove(), 300);
@@ -53,21 +43,13 @@ document.querySelectorAll('.table th').forEach(header => {
     btn.addEventListener('click', function() {
       const row = this.closest('tr');
       const id = row.querySelector('td').textContent;
-<<<<<<< HEAD
-      alert(`Ðåäàêòèðîâàíèå çàïèñè #${id}`);
-=======
       alert(`Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð·Ð°Ð¿Ð¸ÑÐ¸ #${id}`);
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     });
   });
   
   document.querySelectorAll('.filter-select').forEach(select => {
     select.addEventListener('change', function() {
-<<<<<<< HEAD
-      console.log('Ïðèìåíåí ôèëüòð:', this.value);
-=======
       console.log('ÐŸÑ€Ð¸Ð¼ÐµÐ½ÐµÐ½ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€:', this.value);
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     });
   });
   
@@ -78,8 +60,4 @@ document.querySelectorAll('.table th').forEach(header => {
         this.classList.add('active');
       }
     });
-<<<<<<< HEAD
-});
-=======
   });
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
