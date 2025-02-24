@@ -138,6 +138,12 @@ async def get_me(current_user: User = Depends(deps.get_current_user)):
     return current_user
 
 
+@router.get("/unauthorized", response_class=HTMLResponse, summary="Неавторизованный доступ")
+async def profile_page(request: Request,
+                       ):
+    return TEMPLATES.TemplateResponse("unauthorized.html", {"request": request})
+
+
 @router.post("/activate/{token}/{action}", response_model=schemas.user.User, status_code=201)
 async def activate(*, token, action: str, db: AsyncSession = Depends(deps.get_db)):
     phone = _decode_token(token=token)

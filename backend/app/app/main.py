@@ -2,6 +2,7 @@ import time
 from pathlib import Path
 
 from fastapi import FastAPI, APIRouter, Request, Depends
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -15,6 +16,11 @@ from app.api import deps
 from app.api.api_v1.api import api_router
 
 from app.core.config import settings
+
+from fastapi import HTTPException, Request, status
+from fastapi.responses import RedirectResponse, JSONResponse
+from urllib.parse import quote
+
 
 BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
@@ -43,6 +49,18 @@ async def add_process_time_header(request: Request, call_next):
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
     return response
+
+
+@app.exception_handler(HTTPException)
+async def custom_http_exception_handler(request: Request, exc: HTTPException):
+    if exc.status_code == status.HTTP_401_UNAUTHORIZED:
+        # URL-encode the error detail to handle special characters
+        error_detail = quote(exc.detail)
+        # error_url = f"/auth/unauthorized?detail={error_detail}"
+        error_url = f"/auth/unauthorized"
+        return RedirectResponse(url=error_url, status_code=303)  # 303 for redirect
+    # Return default JSON for other errors
+    return JSONResponse( status_code=exc.status_code, content={"detail": exc.detail},)
 
 
 # Here including custom routers in app

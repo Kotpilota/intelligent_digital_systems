@@ -22,6 +22,9 @@ from fastapi_sessions.backends.implementations import InMemoryBackend
 from fastapi_sessions.frontends.implementations import SessionCookie, CookieParameters
 from app.schemas import SessionData
 
+from fastapi.responses import RedirectResponse
+
+
 class TokenData(BaseModel):
     # username: Optional[str] = None
     userid: Optional[int]
@@ -52,6 +55,9 @@ async def get_current_user(db: AsyncSession = Depends(get_db),
     # skipping for simplicity...
     try:
         if auth is None and ids_user_access_token is None:
+
+            # return RedirectResponse(url="/auth/unauthorized")
+            
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Bearer token missing or unknown",
