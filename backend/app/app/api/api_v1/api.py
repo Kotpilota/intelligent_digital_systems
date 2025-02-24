@@ -2,13 +2,9 @@ from fastapi import APIRouter
 
 from app.api.api_v1.endpoints import auth, endpoint_example
 from app.api.api_v1.endpoints import (
-    endpoint_user, endpoint_role, endpoint_file, endpoint_faq, endpoint_locations,
-    endpoint_employment_levels, endpoint_employment_types, endpoint_skill_types,
-    endpoint_experience, endpoint_message,
+    endpoint_user, endpoint_role, endpoint_file, endpoint_faq, endpoint_experience, endpoint_message,
     endpoint_formation, endpoint_certificate, endpoint_job, endpoint_job_application,
-    endpoint_skills, endpoint_has_skils, endpoint_tasks, endpoint_task_status, 
-    endpoint_assigned_tasks, endpoint_project_document_types, endpoint_projects, 
-    endpoint_project_documents, endpoint_participants 
+    endpoint_task, endpoint_task_status 
     )
 from app.api.api_v1.endpoints.admin import (
     endpoint_admin, endpoint_dashboard, endpoint_admin_table_content,
@@ -21,9 +17,14 @@ from  app.api.api_v1.endpoints.common_part import (
     )
 
 from  app.api.api_v1.endpoints.personal_account import (
-    endpoint_account, endpoint_assigned_tasks, endpoint_chat_page_enter,
-    endpoint_chat_page_exit, endpoint_profile
+    endpoint_account, endpoint_chat_page_enter,
+    endpoint_chat_page_exit, endpoint_profile, endpoint_assigned_tasks_page
 )
+from app.api.api_v1.endpoints import (endpoint_assigned_task, endpoint_employment_level, endpoint_employment_type, 
+                                      endpoint_has_skill, endpoint_location, endpoint_participant, endpoint_project, 
+                                      endpoint_project_document, endpoint_project_document_type, endpoint_skill, 
+                                      endpoint_skill_type)
+
 
 api_router = APIRouter()
 api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
@@ -39,12 +40,12 @@ api_router.include_router(endpoint_mainpage.router, prefix="", tags=["main_page"
 
 
 api_router.include_router(endpoint_faq.router, prefix="/faq", tags=["faq"])
-api_router.include_router(endpoint_locations.router, prefix="/location", tags=["location"])
-api_router.include_router(endpoint_employment_levels.router, prefix="/employment_level", tags=["employment_level"])
-api_router.include_router(endpoint_employment_types.router, prefix="/employment_type", tags=["employment_type"])
-api_router.include_router(endpoint_skill_types.router, prefix="/skill_type", tags=["skill_type"])
-api_router.include_router(endpoint_skills.router, prefix="/skill", tags=["skill"])
-api_router.include_router(endpoint_has_skils.router, prefix="/has_skill", tags=["has_skill"])
+api_router.include_router(endpoint_location.router, prefix="/location", tags=["location"])
+api_router.include_router(endpoint_employment_level.router, prefix="/employment_level", tags=["employment_level"])
+api_router.include_router(endpoint_employment_type.router, prefix="/employment_type", tags=["employment_type"])
+api_router.include_router(endpoint_skill_type.router, prefix="/skill_type", tags=["skill_type"])
+api_router.include_router(endpoint_skill.router, prefix="/skill", tags=["skill"])
+api_router.include_router(endpoint_has_skill.router, prefix="/has_skill", tags=["has_skill"])
 
 api_router.include_router(endpoint_experience.router, prefix="/experience", tags=["experience"])
 api_router.include_router(endpoint_message.router, prefix="/message", tags=["message"])
@@ -55,13 +56,13 @@ api_router.include_router(endpoint_job_application.router, prefix="/job_applicat
 
 
 
-api_router.include_router(endpoint_tasks.router, prefix="/task", tags=["task"])
+api_router.include_router(endpoint_task.router, prefix="/task", tags=["task"])
 api_router.include_router(endpoint_task_status.router, prefix="/task_status", tags=["task_status"])
-api_router.include_router(endpoint_assigned_tasks.router, prefix="/assigned_tasks", tags=["assigned_tasks"])
-api_router.include_router(endpoint_project_document_types.router, prefix="/project_document_type", tags=["project_document_type"])
-api_router.include_router(endpoint_projects.router, prefix="/project", tags=["project"])
-api_router.include_router(endpoint_project_documents.router, prefix="/project_document", tags=["project_document"])
-api_router.include_router(endpoint_participants.router, prefix="/participant", tags=["participant"])
+api_router.include_router(endpoint_assigned_task.router, prefix="/assigned_task", tags=["assigned_task"])
+api_router.include_router(endpoint_project_document_type.router, prefix="/project_document_type", tags=["project_document_type"])
+api_router.include_router(endpoint_project.router, prefix="/project", tags=["project"])
+api_router.include_router(endpoint_project_document.router, prefix="/project_document", tags=["project_document"])
+api_router.include_router(endpoint_participant.router, prefix="/participant", tags=["participant"])
 
 # admin page
 api_router.include_router(endpoint_dashboard.router, prefix="", tags=["dashboard"])
@@ -79,7 +80,7 @@ api_router.include_router(endpoint_job_application.router, prefix="", tags=["job
 
 # personal_account page
 api_router.include_router(endpoint_account.router, prefix="", tags=["account"])
-api_router.include_router(endpoint_assigned_tasks.router, prefix="", tags=["assigned_tasks"])
+api_router.include_router(endpoint_assigned_tasks_page.router, prefix="", tags=["assigned_tasks_page"])
 api_router.include_router(endpoint_chat_page_enter.router, prefix="", tags=["chat_page_enter"])
 api_router.include_router(endpoint_chat_page_exit.router, prefix="", tags=["chat_page_exit"])
 api_router.include_router(endpoint_profile.router, prefix="", tags=["profile"])
