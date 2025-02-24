@@ -12,8 +12,7 @@ class ParticipantBase(BaseModel):
     project_id: int = Field(..., description="")
     user_id: int = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 
 # Properties to receive via API on creation
@@ -29,6 +28,9 @@ class ParticipantUpdate( ParticipantBase):
 class ParticipantInDBBase( ParticipantBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

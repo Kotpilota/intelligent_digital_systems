@@ -14,8 +14,7 @@ class CertificateBase(BaseModel):
     user_id: int =  Field(..., description="")
     file_id: int = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class CertificateCreate( CertificateBase):
@@ -30,6 +29,9 @@ class CertificateUpdate( CertificateBase):
 class CertificateInDBBase( CertificateBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

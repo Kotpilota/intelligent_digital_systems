@@ -12,8 +12,7 @@ class FaqBase(BaseModel):
     question: str = Field(..., description="")
     answer: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 
 
@@ -29,6 +28,9 @@ class FaqUpdate( FaqBase):
 
 class FaqInDBBase( FaqBase):
     id: Optional[int] = Field(description="", default=None)
+
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
     class Config:
         # orm_mode = True

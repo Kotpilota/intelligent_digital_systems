@@ -11,8 +11,7 @@ class LocationBase(BaseModel):
     city: str = Field(..., description="")
     country: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class LocationCreate( LocationBase):
@@ -27,6 +26,9 @@ class LocationUpdate( LocationBase):
 class LocationInDBBase( LocationBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

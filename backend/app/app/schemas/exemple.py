@@ -9,8 +9,7 @@ class ExempleBase(BaseModel):
     float_attribute: float  = Field(..., description="")
     boolean_attribute: bool  = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 class ExempleCreate(ExempleBase):
     pass
@@ -25,6 +24,9 @@ class ExempleUpdate(ExempleBase):
 class ExempleInDBBase(ExempleBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

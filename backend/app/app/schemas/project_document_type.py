@@ -10,8 +10,7 @@ import re
 class Project_Document_TypeBase(BaseModel):
     doctype: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class Project_Document_TypeCreate( Project_Document_TypeBase):
@@ -26,6 +25,9 @@ class Project_Document_TypeUpdate( Project_Document_TypeBase):
 class Project_Document_TypeInDBBase( Project_Document_TypeBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

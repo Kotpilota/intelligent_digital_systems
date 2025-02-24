@@ -10,8 +10,7 @@ import re
 class FileBase(BaseModel):
     path: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 
 # Properties to receive via API on creation
@@ -27,6 +26,9 @@ class FileUpdate( FileBase):
 class FileInDBBase( FileBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

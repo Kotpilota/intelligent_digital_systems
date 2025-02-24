@@ -13,8 +13,7 @@ class Has_SkillBase(BaseModel):
     user_id: Optional[int] = Field(..., description="ID пользователя")
     skill_id: Optional[int] = Field(..., description="ID навыка")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 
 # Properties to receive via API on creation
@@ -30,6 +29,9 @@ class Has_SkillUpdate( Has_SkillBase):
 class Has_SkillInDBBase( Has_SkillBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

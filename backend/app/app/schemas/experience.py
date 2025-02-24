@@ -16,8 +16,7 @@ class ExperienceBase(BaseModel):
     ended_at: datetime = Field(..., description="")
     user_id: int = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class ExperienceCreate( ExperienceBase):
@@ -31,6 +30,9 @@ class ExperienceUpdate( ExperienceBase):
 
 class ExperienceInDBBase( ExperienceBase):
     id: Optional[int] = Field(description="", default=None)
+
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
     class Config:
         # orm_mode = True

@@ -14,8 +14,7 @@ class Project_DocumentBase(BaseModel):
     doctype_id: int = Field(..., description="")
     file_id: int  = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class Project_DocumentCreate( Project_DocumentBase):
@@ -30,6 +29,9 @@ class Project_DocumentUpdate( Project_DocumentBase):
 class Project_DocumentInDBBase( Project_DocumentBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

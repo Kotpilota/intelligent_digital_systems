@@ -14,8 +14,7 @@ class TaskBase(BaseModel):
     description: str = Field(..., description="")
     project_id: int = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 
 
@@ -33,6 +32,9 @@ class TaskUpdate( TaskBase):
 class TaskInDBBase( TaskBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

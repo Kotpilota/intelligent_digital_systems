@@ -10,8 +10,7 @@ import re
 class Employment_TypeBase(BaseModel):
     type: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class Employment_TypeCreate( Employment_TypeBase):
@@ -25,6 +24,9 @@ class Employment_TypeUpdate( Employment_TypeBase):
 
 class Employment_TypeInDBBase( Employment_TypeBase):
     id: Optional[int] = Field(description="", default=None)
+
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
     class Config:
         # orm_mode = True

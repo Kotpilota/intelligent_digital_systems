@@ -17,8 +17,7 @@ class Assigned_TaskBase(BaseModel):
     assigned_at: datetime  = Field(..., description="")
     deadline: datetime  = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class Assigned_TaskCreate( Assigned_TaskBase):
@@ -32,6 +31,9 @@ class Assigned_TaskUpdate( Assigned_TaskBase):
 
 class Assigned_TaskInDBBase( Assigned_TaskBase):
     id: Optional[int] = Field(description="", default=None)
+    
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
     class Config:
         # orm_mode = True

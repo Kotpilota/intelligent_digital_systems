@@ -16,8 +16,7 @@ class Job_ApplicationBase(BaseModel):
     job_id: int = Field(..., description="")
     cv_id: int = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class Job_ApplicationCreate( Job_ApplicationBase):
@@ -32,6 +31,9 @@ class Job_ApplicationUpdate( Job_ApplicationBase):
 class Job_ApplicationInDBBase( Job_ApplicationBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

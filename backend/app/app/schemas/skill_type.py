@@ -10,8 +10,7 @@ import re
 class Skill_TypeBase(BaseModel):
     type: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 
 # Properties to receive via API on creation
@@ -27,6 +26,9 @@ class Skill_TypeUpdate( Skill_TypeBase):
 class Skill_TypeInDBBase( Skill_TypeBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

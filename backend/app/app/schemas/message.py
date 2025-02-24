@@ -12,8 +12,7 @@ class MessageBase(BaseModel):
     recipient_id: int = Field(..., description="")
     content: str = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+    
 
 # Properties to receive via API on creation
 class MessageCreate( MessageBase):
@@ -28,6 +27,9 @@ class MessageUpdate( MessageBase):
 class MessageInDBBase( MessageBase):
     id: Optional[int] = Field(description="", default=None)
 
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
     class Config:
         # orm_mode = True
         from_attributes = True

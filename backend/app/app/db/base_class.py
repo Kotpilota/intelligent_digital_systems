@@ -1,6 +1,6 @@
 import typing as t
 from datetime import datetime
-from sqlalchemy import func, inspect
+from sqlalchemy import func, inspect, DateTime
 from sqlalchemy.orm import  Mapped, mapped_column, DeclarativeBase
 from sqlalchemy.ext.declarative import as_declarative, declared_attr, declarative_base
 from sqlalchemy.ext.asyncio import AsyncAttrs

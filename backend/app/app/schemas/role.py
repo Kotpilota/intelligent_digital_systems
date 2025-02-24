@@ -10,8 +10,7 @@ class RoleBase(BaseModel):
     # name: ClassVar[str]  = Field(..., description="")
     name: Optional[str] = Field(..., description="")
 
-    created_at: datetime = Field(..., description="")
-    updated_at: datetime = Field(..., description="")
+
 
 
 # Properties to receive via API on creation
@@ -33,6 +32,9 @@ class RoleUpdate(RoleBase):
 
 class RoleInDBBase(RoleBase):
     id: Optional[int] = Field(description="", default=None)
+
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
 
     class Config:
         # orm_mode = True
