@@ -1,9 +1,11 @@
+//*код с промежуточными значениями пока сервер не отвечает
 const endpointname = localStorage.getItem('endpointname');
 
 let dbname = endpointname;
 let names=dbname+"s"
 
 async function osnov() {
+   
     const res = await fetch(`/${dbname}/read`);
     data = await res.json();
   
@@ -53,7 +55,7 @@ async function postbd()
       
       console.log(name,value); 
 
-    
+     
         if (name=="created_at"||name=="updated_at"){
           value="2023-01-01 00:00:00"
         }
@@ -78,3 +80,9 @@ async function postbd()
 
 } 
 osnov()
+document.querySelector('.btn-primary').addEventListener('click',function(){
+     document.querySelector('.new-record').style.display="flex"
+})
+document.querySelector('.close').addEventListener('click',function(){
+    document.querySelector('.new-record').style.display="none"
+})

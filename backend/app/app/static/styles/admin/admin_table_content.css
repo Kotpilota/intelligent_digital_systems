@@ -222,7 +222,7 @@ css
 }
 .new-record{
  border: black solid 1px;
-  display: flex;
+  display: none;
   position: fixed;
   z-index: 1000;
   width: 500px;
