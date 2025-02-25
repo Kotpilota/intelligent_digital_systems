@@ -181,19 +181,8 @@ async function  perebor2(namebd,data) {
  
 let datasink = {}; 
 
-async function handleGenerateFormClick(event) {
-  if (event.target.classList.contains('btn-success')) {
-   
-    document.querySelector('.new-record').style.display = 'flex';
 
-   
-    await formgenerates(2);
-
-    console.log("Форма сгенерирована");
-
-  }
-}
-
+let idtbValue1
 
 async function handleGenerateFormClick(event) {
     if (event.target.classList.contains('btn-success')) {
@@ -206,8 +195,8 @@ async function handleGenerateFormClick(event) {
             if (idtbCell) {
                 const idtbValue = idtbCell.textContent; 
          
-                event.target.dataset.idtbValue = idtbValue; 
-
+                idtbValue1 = idtbValue; 
+                console.log('Значение idtb:', idtbValue);
                 document.querySelector('.new-record').style.display = 'flex';
                 await formgenerates(2);
                 console.log("Форма сгенерирована");
@@ -236,8 +225,8 @@ async function handleUpdateClick(event) {
                 console.log(name, value);
             });
      
-            const idtbValue = document.querySelector('.btn-success').dataset.idtbValue
-
+            const idtbValue = idtbValue1
+            console.log(idtbValue )
             if (idtbValue) {
                 console.log("idtbValue", idtbValue)
                 try {
