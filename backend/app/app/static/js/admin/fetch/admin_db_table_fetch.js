@@ -101,10 +101,15 @@ async function  perebor2(namebd,data) {
                             for(let l=0;l<data.length;l++){
                                 if (s<2){
                                     tbodyHTML+= `<tr>`
-                                    for (let j = 1; j < ff[namebd].length; j++) {
+                                    for (let j = 1; j < ff[namebd].length+1; j++) {
+                                      if(j<ff[namebd].length){
+                                          
                                         let va=ff[namebd][j].name
                                         tbodyHTML += `<td>${data[l][va]}</td>`;
                                     
+                                      }else{
+                                        tbodyHTML+=`<td><button class='btn btn-success'>Изменить</button><button class='btn btn-danger'>Удалить</button></td>`
+                                      }
                                     
                                     }
                                     tbodyHTML+= `</tr>`}

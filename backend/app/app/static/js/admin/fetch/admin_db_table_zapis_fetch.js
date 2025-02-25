@@ -27,13 +27,15 @@ let form=document.querySelector('.form')
          for (let j = 1; j < data[storedData].length; j++) {
              let v = data[storedData][j].name;
         
-          
+       
+                if(v=="id"||v=="created_at"||v=="updated_at"){
+                    continue
+                }
                 
-                
-                
-                
-            
-                 form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input type="text" class="form-input" name="'+v+'">"'+'</div">'
+            else{
+                 form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input type="text" class="form-input" name="'+v+'>"'+'</div>'
+            }
+             
             
          }
          break;
@@ -56,9 +58,7 @@ async function postbd()
       console.log(name,value); 
 
      
-        if (name=="created_at"||name=="updated_at"){
-          value="2023-01-01 00:00:00"
-        }
+      
         data[name]= value;
       
     });
