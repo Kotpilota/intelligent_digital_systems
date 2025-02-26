@@ -1,0 +1,37 @@
+{% extends "common_part/base.html" %}
+
+{% block title %}Вакансии{% endblock %}
+
+{% block styles %}
+  {{ super() }} 
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles/common_part/job posting.css') }}">
+{% endblock %}
+
+{% block content %}
+  <main class="container">
+    <section class="filters">
+      <form class="filters__form">
+        <input type="text" class="filters__input" placeholder="Должность, ключевые слова">
+        <input type="text" class="filters__input" placeholder="Город">
+        <select class="filters__input">
+          <option value="">Тип занятости</option>
+          <option value="full">Полная</option>
+          <option value="part">Частичная</option>
+          <option value="remote">Удаленная</option>
+        </select>
+        <select class="filters__input">
+          <option value="">Уровень</option>
+          <option value="junior">Junior</option>
+          <option value="middle">Middle</option>
+          <option value="senior">Senior</option>
+        </select>
+      </form>
+    </section>
+    <section class="job-list">
+    </section>
+  </main>
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+  <script src = "{{ url_for('static', path='/js/common_part/job_posting.js') }}"></script>
+{% endblock %}

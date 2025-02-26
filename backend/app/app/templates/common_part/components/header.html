@@ -1,0 +1,32 @@
+<header class="header">
+    <div class="leftselect">
+        <div class="h1tag"><img class="lg" src="{{ url_for('static', path='/assets/apple-touch-icon%20(1).png') }} ">
+        <h4 class="h1taghead">Главная</h4>
+        <h4 class="h1taghead">Проекты </h4>
+        <h4 class="h1taghead">О нас</h4></div>
+    </div>
+    <div class="rightselect"></div>
+    <div class="rs"><select class="header__select">
+    <option>RU</option>
+    <option>EN</option>
+    </select>
+    <input type="text" class="search">
+    <button class="search-button">
+        <img class="searchimg" src="{{ url_for('static', path='/assets/icons8-поиск.svg') }} "><!-- Используйте иконку из Font Awesome -->
+    </button>
+    <button class="voity">Войти</button></div>
+    <div class="modalBackground">
+        <div class="modalActive">
+            <div class="modalClose">
+                <img src="modalCross.svg" />
+                <h2>Вход в систему</h2>
+                <form class="auth-form">
+                    <input type="text" placeholder="Number" required>
+                    <input type="password" placeholder="Пароль" required>
+                    <button type="submit">Войти</button>
+                </form>
+            </div>
+            <div class="modalWindow"></div>
+        </div>
+    </div>
+</header>

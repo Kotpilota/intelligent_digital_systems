@@ -26,10 +26,7 @@ async def read_job(
 
 
 @router.get("/read", response_model=List[Job])
-async def read_jobs(
-    db: AsyncSession = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user),
-) -> Any:
+async def read_jobs(db: AsyncSession = Depends(deps.get_db)) -> Any:
     """
     Get all jobs.
     """

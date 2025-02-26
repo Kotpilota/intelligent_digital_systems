@@ -10,6 +10,9 @@ router = APIRouter()
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent.parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
+
 @router.get("/case_detail", response_class=HTMLResponse, summary="case_detail")
 async def case_detail_page(request: Request):
-    return TEMPLATES.TemplateResponse("common_part/case_detail.html", {"request": request})
+    return TEMPLATES.TemplateResponse(
+        "common_part/pages/case_detail.html", {"request": request}
+    )
