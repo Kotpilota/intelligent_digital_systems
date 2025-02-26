@@ -12,8 +12,7 @@ router = APIRouter()
 @router.get("/read/{id}", response_model=Job_Application)
 async def read_job_application(
     id: int,
-    db: AsyncSession = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user)
+    db: AsyncSession = Depends(deps.get_db)
 ) -> Any:
     """
     Get a job_application.
@@ -25,8 +24,7 @@ async def read_job_application(
 
 @router.get("/read", response_model=List[Job_Application])
 async def read_job_applications(
-    db: AsyncSession = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user)
+    db: AsyncSession = Depends(deps.get_db)
 ) -> Any:
     """
     Get all job_applications.
