@@ -218,8 +218,8 @@ async function handleUpdateClick(event) {
             const datasink = {}; 
             const input = form.querySelectorAll('input'); 
             input.forEach(element => {
-                const names = element.name;
-                const name = names.slice(0, -1);
+                const name = element.name;
+             
                 const value = element.value;
                 datasink[name] = value;
                 console.log(name, value);

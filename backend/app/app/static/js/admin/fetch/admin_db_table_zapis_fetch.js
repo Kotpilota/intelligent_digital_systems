@@ -11,11 +11,20 @@ async function osnov() {
   
  
    console.log(data)
-   document.addEventListener('click', function(event) {
+   document.addEventListener('click',async function(event) {
   
     if (event.target.classList.contains('btn-rec')) {
-        postbd()  
-        window.location.reload();
+        if(names=="files"){
+            handleFileSelection()
+        
+        }else{
+           
+            postbd()
+            window.location.reload();
+           
+        }
+       
+
     }
   });
   document.addEventListener('click', function(event) {
@@ -44,6 +53,7 @@ let form=document.querySelector('.form')
            
              let v = data[names][j].name
              console.log(data[names].length,j);
+           
              if(fun==1&&j>=data[names].length-1){
                 document.querySelector(".btn-osn").innerHTML+=`<button class=" btn-rec">Добавить</button><button class="close">Закрыть</button>`
             }
@@ -55,11 +65,16 @@ let form=document.querySelector('.form')
                 }
                 
             else{
-                
-               
+   
+                if(names=="files"){
+                 form.innerHTML+='<div class="form-group" ><h3 class="form-label" style="display:none">'+v+'</h3>'+'<input style="display:none" type="file" id="fileInput" multiple>'+'</div>'
+
+                }else{
+                     form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="text" class="form-input" name="'+v+'"'+'>'+'</div>'
+                }
                     
                
-                    form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input type="text" class="form-input" name="'+v+'>"'+'</div>'
+                    
                 
                 
             }
@@ -72,16 +87,66 @@ let form=document.querySelector('.form')
 
 
 }
+function handleFileSelection() {
+    const fileInput = document.getElementById('fileInput');
+  
+    fileInput.addEventListener('change', (event) => {
+      const files = event.target.files; 
+  
+      if (files.length > 0) {
+        console.log("Выбранные файлы:", files);
+        postbd2(files); 
+      
+      } else {
+        console.log("Файлы не выбраны");
+      }
+    });
+    fileInput.click();
+  }
+  
+  
+  async function postbd2(files) { 
+    console.log("Выбранные файлы:", files);
+  
+    try {
+      const formData = new FormData();
+  
+      // Перебираем FileList
+      for (let i = 0; i < files.length; i++) {
+        formData.append('myfile', files[i], files[i].name); 
+      }
+  
+      const response = await fetch(`/${dbname}/create`, {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      if (responseData) {
+        window.location.reload();
+      }
+      console.log("Успешный ответ (файлы):", responseData);
+  
+    } catch (error) {
+      console.error("Ошибка при отправке данных файлов:", error);
+    }
+  }
+  
+  
  
 async function postbd()
 {
     let input=document.querySelectorAll('.form-input')
-
+   
     const data = {}; 
 
     input.forEach(element => {
-    const names=element.name
-    const name=names.slice(0,-1)
+    const name=element.name
+    
       let value = element.value; 
       
       console.log(name,value); 
@@ -109,9 +174,11 @@ async function postbd()
 
 } 
 osnov()
-document.addEventListener('click', function(event) {
+document.addEventListener('click',async function(event) {
     if (event.target.classList.contains('btn-primary')) {
         document.querySelector('.new-record').style.display="flex"
-         formgenerates(1)
+         await formgenerates(1)
+
+     
     }
   });
