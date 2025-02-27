@@ -7,7 +7,7 @@ from app import crud, models
 from app.api import deps
 from app.models.user import User
 from app.schemas.project import Project, ProjectCreate, ProjectUpdate
-
+from datetime import datetime
 
 router = APIRouter()
 
@@ -43,6 +43,7 @@ async def create_project(*, db: AsyncSession = Depends(deps.get_db),
     """
     Create new project.
     """
+
     return await crud.project.create(db=db, obj_in=project_in)
 
 

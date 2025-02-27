@@ -10,8 +10,8 @@ from datetime import datetime
 class ProjectBase(BaseModel):
     name: str = Field(..., description="")
     description: str = Field(..., description="")
-    started_at: datetime  = Field(..., description="")
-    deadline: datetime  = Field(..., description="")
+    started_at: datetime  =  Field(..., description="")
+    deadline: datetime  =  Field(..., description="") 
 
     
 

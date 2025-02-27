@@ -11,7 +11,7 @@ from app.db.session import SessionLocal
 from sqlalchemy import select
 from typing import List, Type
 from fastapi.encoders import jsonable_encoder
-
+from datetime import datetime
 
 class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
 
@@ -19,6 +19,18 @@ class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
 
     def __init__(self):
         super().__init__(Project)
+
+    
+    @classmethod
+    async def create(cls, db: AsyncSession, *, obj_in: ProjectCreate) -> Project:
+        obj_in_data = jsonable_encoder(obj_in)
+        db_obj = cls.model(**obj_in_data)  # type : ignore
+        db_obj.started_at = datetime.strptime(db_obj.started_at, "%Y-%m-%dT%H:%M:%S.%fZ")
+        db_obj.deadline = datetime.strptime(db_obj.deadline, "%Y-%m-%dT%H:%M:%S.%fZ")
+        db.add(db_obj)
+        await db.commit()
+        await db.refresh(db_obj)
+        return db_obj
 
 
 project = CRUDProject()
