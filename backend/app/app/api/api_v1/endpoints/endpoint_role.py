@@ -54,7 +54,7 @@ async def update_role(*, db: AsyncSession = Depends(deps.get_db),
     """
     Update a role.
     """
-    role = await crud.role.get(db=db, id=id)
+    role = await crud.role.get_by_id(db=db, id=id)
     if not role:
         raise HTTPException(status_code=404, detail="role doesn't exists", )
     role = await crud.role.update(db=db, db_obj=role, obj_in=role_in)
