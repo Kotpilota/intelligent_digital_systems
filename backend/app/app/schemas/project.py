@@ -10,8 +10,11 @@ from datetime import datetime
 class ProjectBase(BaseModel):
     name: str = Field(..., description="")
     description: str = Field(..., description="")
-    started_at: datetime  =  Field(..., description="")
-    deadline: datetime  =  Field(..., description="") 
+    started_at: datetime 
+    deadline: datetime 
+
+    
+
 
     
 
@@ -34,6 +37,10 @@ class ProjectInDBBase( ProjectBase):
     class Config:
         # orm_mode = True
         from_attributes = True
+
+        json_encoders = {
+            datetime: lambda dt: dt.strftime("%d-%m-%Y %H:%M")
+        }
 
 
 # Additional properties to return via API
