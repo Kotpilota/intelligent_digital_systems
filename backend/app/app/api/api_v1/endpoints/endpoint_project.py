@@ -43,6 +43,12 @@ async def create_project(*, db: AsyncSession = Depends(deps.get_db),
     """
     Create new project.
     """
+    
+    str_started_at = project_in.started_at.strftime("%d-%m-%Y")
+    str_deadline = project_in.deadline.strftime("%d-%m-%Y")
+    project_in.started_at = datetime.strptime(str_started_at, "%d-%m-%Y")
+    project_in.deadline = datetime.strptime(str_deadline, "%d-%m-%Y")
+    
 
     return await crud.project.create(db=db, obj_in=project_in)
 
@@ -56,6 +62,14 @@ async def update_project(*, db: AsyncSession = Depends(deps.get_db),
     """
     Update a project.
     """
+
+
+    str_started_at = project_in.started_at.strftime("%d-%m-%Y")
+    str_deadline = project_in.deadline.strftime("%d-%m-%Y")
+    project_in.started_at = datetime.strptime(str_started_at, "%d-%m-%Y")
+    project_in.deadline = datetime.strptime(str_deadline, "%d-%m-%Y")
+
+    
     project = await crud.project.get_by_id(db=db, id=id)
     if not project:
         raise HTTPException( status_code=404, detail="project doesn't exist",)

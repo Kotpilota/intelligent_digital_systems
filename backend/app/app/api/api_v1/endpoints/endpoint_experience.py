@@ -6,6 +6,8 @@ from app import crud
 from app.api import deps
 from app.schemas.experience import Experience, ExperienceCreate, ExperienceUpdate
 from app.models.user import User
+from datetime import datetime
+
 
 router = APIRouter()
 
@@ -43,6 +45,13 @@ async def create_experience(
     """
     Create a new experience.
     """
+
+    str_started_at = experience_in.started_at.strftime("%d-%m-%Y")
+    str_ended_at = experience_in.ended_at.strftime("%d-%m-%Y")
+    experience_in.started_at = datetime.strptime(str_started_at, "%d-%m-%Y")
+    experience_in.deadline = datetime.strptime(str_ended_at, "%d-%m-%Y")
+
+
     return await crud.experience.create(db=db, obj_in=experience_in)
 
 @router.put("/update/{id}", response_model=Experience)
@@ -56,6 +65,13 @@ async def update_experience(
     """
     Update a experience.
     """
+
+    str_started_at = experience_in.started_at.strftime("%d-%m-%Y")
+    str_ended_at = experience_in.ended_at.strftime("%d-%m-%Y")
+    experience_in.started_at = datetime.strptime(str_started_at, "%d-%m-%Y")
+    experience_in.deadline = datetime.strptime(str_ended_at, "%d-%m-%Y")
+
+
     experience = await crud.experience.get_by_id(db=db, id=id)
     if not experience:
         raise HTTPException(status_code=404, detail="experience not found")
