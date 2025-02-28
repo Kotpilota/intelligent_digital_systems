@@ -55,10 +55,6 @@ class CRUDExperience(CRUDBase[Experience, ExperienceCreate, ExperienceUpdate]):
                 setattr(db_obj, field, update_data[field])
 
 
-        db_obj.started_at = datetime.strptime(db_obj.started_at, "%Y-%m-%dT%H:%M:%S")
-        db_obj.ended_at = datetime.strptime(db_obj.ended_at, "%Y-%m-%dT%H:%M:%S")
-
-
         str_started_at = db_obj.started_at.strftime("%d-%m-%Y")
         str_ended_at = db_obj.ended_at.strftime("%d-%m-%Y")
         

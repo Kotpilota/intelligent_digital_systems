@@ -55,9 +55,6 @@ class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
                 setattr(db_obj, field, update_data[field])
 
   
-        db_obj.started_at = datetime.strptime(db_obj.started_at, "%Y-%m-%dT%H:%M:%S")
-        db_obj.deadline = datetime.strptime(db_obj.deadline, "%Y-%m-%dT%H:%M:%S")
-
 
         str_started_at = db_obj.started_at.strftime("%d-%m-%Y")
         str_deadline = db_obj.deadline.strftime("%d-%m-%Y")

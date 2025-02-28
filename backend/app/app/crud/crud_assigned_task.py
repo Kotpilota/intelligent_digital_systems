@@ -56,10 +56,6 @@ class CRUDAssigned_Task(CRUDBase[Assigned_Task, Assigned_TaskCreate, Assigned_Ta
 
         
 
-        db_obj.assigned_at = datetime.strptime(db_obj.assigned_at, "%Y-%m-%dT%H:%M:%S")
-        db_obj.deadline = datetime.strptime(db_obj.deadline, "%Y-%m-%dT%H:%M:%S")
-
-
         str_assigned_at = db_obj.assigned_at.strftime("%d-%m-%Y")
         str_deadline = db_obj.deadline.strftime("%d-%m-%Y")
         
