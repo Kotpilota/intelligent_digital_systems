@@ -7,6 +7,7 @@ from app import crud, models
 from app.api import deps
 from app.models.user import User
 from app.schemas.assigned_task import Assigned_Task, Assigned_TaskCreate, Assigned_TaskUpdate
+from datetime import datetime
 
 
 router = APIRouter()
@@ -43,6 +44,12 @@ async def create_assigned_task(*, db: AsyncSession = Depends(deps.get_db),
     """
     Create new assigned_task.
     """
+
+    str_assigned_at = assigned_task_in.assigned_at.strftime("%d-%m-%Y")
+    str_deadline = assigned_task_in.deadline.strftime("%d-%m-%Y")
+    assigned_task_in.assigned_at.started_at = datetime.strptime(str_assigned_at, "%d-%m-%Y")
+    assigned_task_in.deadline = datetime.strptime(str_deadline, "%d-%m-%Y")
+
     return await crud.assigned_task.create(db=db, obj_in=assigned_task_in)
 
 
@@ -55,6 +62,12 @@ async def update_assigned_task(*, db: AsyncSession = Depends(deps.get_db),
     """
     Update a assigned_task.
     """
+
+    str_assigned_at = assigned_task_in.assigned_at.strftime("%d-%m-%Y")
+    str_deadline = assigned_task_in.deadline.strftime("%d-%m-%Y")
+    assigned_task_in.assigned_at.started_at = datetime.strptime(str_assigned_at, "%d-%m-%Y")
+    assigned_task_in.deadline = datetime.strptime(str_deadline, "%d-%m-%Y")
+
     assigned_task = await crud.assigned_task.get_by_id(db=db, id=id)
     if not assigned_task:
         raise HTTPException( status_code=404, detail="assigned_task doesn't exist",)

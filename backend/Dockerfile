@@ -1,5 +1,5 @@
 
-FROM python:3.9
+FROM python:3.10
 
 # create the app user
 RUN addgroup --system app && adduser --system --group app

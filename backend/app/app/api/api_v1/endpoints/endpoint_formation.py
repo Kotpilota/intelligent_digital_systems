@@ -6,6 +6,8 @@ from app import crud
 from app.api import deps
 from app.schemas.formation import Formation, FormationCreate, FormationUpdate
 from app.models.user import User
+from datetime import datetime
+
 
 router = APIRouter()
 
@@ -43,6 +45,12 @@ async def create_formation(
     """
     Create a new formation.
     """
+
+    str_started_at = formation_in.started_at.strftime("%d-%m-%Y")
+    str_ended_at = formation_in.ended_at.strftime("%d-%m-%Y")
+    formation_in.started_at = datetime.strptime(str_started_at, "%d-%m-%Y")
+    formation_in.deadline = datetime.strptime(str_ended_at, "%d-%m-%Y")
+
     return await crud.formation.create(db=db, obj_in=formation_in)
 
 @router.put("/update/{id}", response_model=Formation)
@@ -56,6 +64,13 @@ async def update_formation(
     """
     Update a formation.
     """
+
+    str_started_at = formation_in.started_at.strftime("%d-%m-%Y")
+    str_ended_at = formation_in.ended_at.strftime("%d-%m-%Y")
+    formation_in.started_at = datetime.strptime(str_started_at, "%d-%m-%Y")
+    formation_in.deadline = datetime.strptime(str_ended_at, "%d-%m-%Y")
+
+
     formation = await crud.formation.get_by_id(db=db, id=id)
     if not formation:
         raise HTTPException(status_code=404, detail="formation not found")

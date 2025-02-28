@@ -14,5 +14,5 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 @router.get("/job_postings", response_class=HTMLResponse, summary="Вакансии")
 async def job_postings_page(request: Request):
     return TEMPLATES.TemplateResponse(
-        "common_part/pages/job postings.html", {"request": request}
+        "common_part/pages/job_postings.html", {"request": request}
     )
