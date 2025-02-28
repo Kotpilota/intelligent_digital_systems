@@ -208,13 +208,59 @@ async function handleGenerateFormClick(event) {
         }
     }
 }
-
+async function handleUpdateClick1() {
+  if (event.target.classList.contains('btn-save')) {
+    const form = document.querySelector('.new-record'); 
+    if (form) { 
+       const fileInput = document.getElementById('fileInput');
+  
+      fileInput.addEventListener('change', async  function ass(event)  {
+        const files = event.target.files;
+    
+        if (files.length > 0) {
+          console.log("Выбранные файлы:", files);
+          return files
+        
+        } else {
+          console.log("Файлы не выбраны");
+        }  });
+        const idtbValue = idtbValue1
+        console.log(idtbValue )
+        if (idtbValue) {
+            console.log("idtbValue", idtbValue)
+            try {
+              const files = await fileInput.files;
+       
+              const formData = new FormData();
+          
+              
+              for (let i = 0; i < files.length; i++) {
+                formData.append('myfile', files[i], files[i].name); 
+              }
+            
+              const response = await fetch(`/${name}/update/${idtbValue}`, {
+                method: 'PUT',
+                body: formData,
+              });
+            
+              if (response.ok) {
+                console.log('Обновление прошло успешно');
+                window.location.reload();
+              } else {
+                console.error('Ошибка при обновлении:', response.status, response.statusText);
+              }
+            } catch (error) {
+              console.error('Ошибка сети:', error);
+            }
+            }
+          }}
+}
 
 async function handleUpdateClick(event) {
     if (event.target.classList.contains('btn-save')) {
         const form = document.querySelector('.new-record'); 
         if (form) {
-
+          
             const datasink = {}; 
             const input = form.querySelectorAll('input'); 
             input.forEach(element => {
@@ -259,8 +305,14 @@ async function handleUpdateClick(event) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  if(names=="files"){
+    document.addEventListener('click', handleGenerateFormClick);
+    document.addEventListener('click', handleUpdateClick1);
+  }else{
     document.addEventListener('click', handleGenerateFormClick);
     document.addEventListener('click', handleUpdateClick);
+  }
+    
 });
   
   
