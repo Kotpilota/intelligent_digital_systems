@@ -61,10 +61,10 @@ let form=document.querySelector('.form')
              console.log(data[names].length,j);
            
              if(fun==1&&j>=data[names].length-1){
-                document.querySelector(".btn-osn").innerHTML+=`<button class=" btn-rec">Добавить</button><button class="close">Закрыть</button>`
+                document.querySelector(".btn-osn").innerHTML+=`<button class="btnform btn-rec">Добавить</button><button class="btnform  close">Закрыть</button>`
             }
             if(fun==2&&j>=data[names].length-1){
-                document.querySelector(".btn-osn").innerHTML+=`<button class=" btn-save">Изменить</button><button class="close">Закрыть</button>`
+                document.querySelector(".btn-osn").innerHTML+=`<button class="btnform btn-save">Изменить</button><button class="btnform close">Закрыть</button>`
             }
                 if(v=="id"||v=="created_at"||v=="updated_at"){
                     continue
@@ -76,8 +76,8 @@ let form=document.querySelector('.form')
                  form.innerHTML+='<div class="form-group" ><h3 class="form-label" style="display:none">'+v+'</h3>'+'<input  type="file" id="fileInput" multiple>'+'</div>'
 
                 }else{
-                    if(v=="started_at"||v=="deadline"){
-                        form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="date" class="form-input" name="'+v+'"'+'>'+'</div>'}
+                    if(v=="started_at"||v=="deadline"||v=="ended_at"||v=="assigned_at"){
+                        form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="date" class="form-input inp-date" name="'+v+'"'+'>'+'</div>'}
                         else{
                                 form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="text" class="form-input" name="'+v+'"'+'>'+'</div>'
                         }
@@ -212,18 +212,3 @@ document.addEventListener('click',async function(event) {
      
     }
   });
-  /*  document.querySelectorAll(".nav-item1").forEach(btn => {
-    btn.classList.remove('active');
-  })
-  document.querySelector('.btn-primary').disabled = true;
-  document.querySelector('.search').disabled = true;
-  document.querySelectorAll(".filter-select").forEach(btn=>{
-    btn.disabled = true;
-  })
-  document.querySelectorAll(".btn-success").forEach(btn => {
-    btn.disabled = true;
-  })
-  document.querySelectorAll(".btn-danger").forEach(btn => {
-    btn.disabled = true;
-  })
-  */
