@@ -38,20 +38,22 @@ async function  link() {
         let namedb=a[i];
 
         let sidebar=document.querySelector(".sidebar");
-        const link = document.createElement('a');
-        link.href = "#";
+        const link = document.createElement('p');
+  
         link.textContent = namedb;
         
       
         link.classList.add('nav-item1');
-     
-    
+        link.classList.add('active');
+    link.style.cursor = 'pointer';
       
         sidebar.appendChild(link);
            
         link.addEventListener("click", function() {
+       if (link.classList.contains('active')) {
             window.location.href = '/admin_db_tables';
-            localStorage.setItem("db", namedb); 
+            localStorage.setItem("db", namedb); }
+            
           });}
         }
 async function  perebor(namebd) {
@@ -198,7 +200,8 @@ async function handleGenerateFormClick(event) {
                 idtbValue1 = idtbValue; 
                 console.log('Значение idtb:', idtbValue);
                 document.querySelector('.new-record').style.display = 'flex';
-                await formgenerates(2);
+                 formgenerates(2);
+                 disable();
                 console.log("Форма сгенерирована");
             } else {
                 console.error('Не найдена ячейка с классом "idtb"');

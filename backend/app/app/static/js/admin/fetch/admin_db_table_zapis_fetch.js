@@ -36,6 +36,7 @@ async function osnov() {
     if (event.target.classList.contains('close')) {
         document.querySelector('.new-record').style.display="none"
         clear()
+        andiasble()
     }
   });
    
@@ -75,7 +76,12 @@ let form=document.querySelector('.form')
                  form.innerHTML+='<div class="form-group" ><h3 class="form-label" style="display:none">'+v+'</h3>'+'<input  type="file" id="fileInput" multiple>'+'</div>'
 
                 }else{
-                     form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="text" class="form-input" name="'+v+'"'+'>'+'</div>'
+                    if(v=="started_at"||v=="deadline"){
+                        form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="date" class="form-input" name="'+v+'"'+'>'+'</div>'}
+                        else{
+                                form.innerHTML+='<div class="form-group" ><h3 class="form-label">'+v+'</h3><input  type="text" class="form-input" name="'+v+'"'+'>'+'</div>'
+                        }
+                      
                 }
                     
                
@@ -184,12 +190,40 @@ async function postbd()
   }
 
 } 
+async function andiasble() {
+  document.querySelector(".backgr").style.display="none"
+}
+async function disable(){
+
+  console.log("disable") 
+  document.querySelector(".backgr").style.display="flex"
+
+
+  
+}
 osnov()
 document.addEventListener('click',async function(event) {
     if (event.target.classList.contains('btn-primary')) {
         document.querySelector('.new-record').style.display="flex"
-         await formgenerates(1)
-
+        console.log("disable")
+       formgenerates(1)
+      
+        disable()
      
     }
   });
+  /*  document.querySelectorAll(".nav-item1").forEach(btn => {
+    btn.classList.remove('active');
+  })
+  document.querySelector('.btn-primary').disabled = true;
+  document.querySelector('.search').disabled = true;
+  document.querySelectorAll(".filter-select").forEach(btn=>{
+    btn.disabled = true;
+  })
+  document.querySelectorAll(".btn-success").forEach(btn => {
+    btn.disabled = true;
+  })
+  document.querySelectorAll(".btn-danger").forEach(btn => {
+    btn.disabled = true;
+  })
+  */

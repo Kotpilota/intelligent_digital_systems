@@ -72,5 +72,5 @@ if __name__ == "__main__":
     import uvicorn
 
 
-    uvicorn.run(app, host="0.0.0.0", port=80, log_level="debug")
+    uvicorn.run(app, host="0.0.0.0", port=8080, log_level="debug")
 
