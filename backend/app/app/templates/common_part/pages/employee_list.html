@@ -1,232 +1,162 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="{{ url_for('static', path='/styles/common_part/employee_list.css') }} " />
-    <link rel="stylesheet" href="{{ url_for('static', path='/styles/common_part/header_footer.css') }}" />
-  </head>
-  <body>
-    <div class="screen">
-      <header class="header">
-        <div class="leftselect">
-            <div class="h1tag"><img class="lg" src="{{ url_for('static', path='/assets/apple-touch-icon%20(1).png') }}">
-            <h4 class="h1taghead">Главная</h4>
-            <h4 class="h1taghead">Проекты </h4>
-            <h4 class="h1taghead">О нас</h4></div>
-        </div>
-    <div class="rightselect"></div>
-    <div class="rs"><select class="header__select">
-      <option>RU</option>
-      <option>EN</option>
-    </select>
-    <input type="text" class="search">
-    <button class="search-button">
-        <img class="searchimg" src="{{ url_for('static', path='/assets/icons8-поиск.svg') }} "><!-- Используйте иконку из Font Awesome -->
-    </button>
-    <button class="voity">Войти</button></div>
-      </header>
-      <div class="view-5">
-        <div class="element">
-          <div class="view-6">
-            <div class="view-wrapper">
-              <div class="img-wrapper">
-                <img class="image" src="https://c.animaapp.com/sRU5GxZu/img/image@2x.png" />
-              </div>
-            </div>
-            <div class="view-7"><img class="img" src="https://c.animaapp.com/sRU5GxZu/img/image-1@2x.png" /></div>
-            <div class="view-8"></div>
-          </div>
-          <div class="frame-wrapper">
-            <div class="frame">
-              <div class="frame-2">
-                <div class="image-wrapper">
-                  <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/-----------------------.svg" />
-                </div>
-                <div class="frame-wrapper-2">
-                  <div class="frame-3">
-                    <div class="text-wrapper-5">Php разработчик</div>
-                    <div class="text-wrapper-6">Николай Титов</div>
-                    <div class="text-wrapper-6">Стаж: 9 лет</div>
-                  </div>
-                </div>
-              </div>
-              <div class="frame-4">
-                <p class="p">
-                  Николай - опытный программист с большим опытом работы в области разработки мобильных приложений. Он
-                  обладает широкими знаниями в области программирования и всегда стремится к самосовершенствованию.
-                </p>
-              </div>
-            </div>
+{% extends "common_part/base.html" %}
+
+{% block title %}Список сотрудников{% endblock %}
+
+{% block styles %}
+  {{ super() }} 
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles/common_part/employee_list.css') }} " />
+{% endblock %}
+
+{% block content %}
+<div class="screen">      
+  <div class="view-5">
+    <div class="element">
+      <div class="view-6">
+        <div class="view-wrapper">
+          <div class="img-wrapper">
+            <img class="image" src="https://c.animaapp.com/sRU5GxZu/img/image@2x.png" />
           </div>
         </div>
-        <div class="element-2">
-          <div class="view-6">
-            <div class="view-wrapper">
-              <div class="img-wrapper">
-                <img class="image" src="https://c.animaapp.com/sRU5GxZu/img/image-2@2x.png" />
-              </div>
-            </div>
-            <div class="view-7"><img class="img" src="https://c.animaapp.com/sRU5GxZu/img/image-3@2x.png" /></div>
-            <div class="view-8"></div>
-          </div>
-          <div class="frame-wrapper">
-            <div class="frame">
-              <div class="frame-2">
-                <div class="image-wrapper">
-                  <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/------------------------1.svg" />
-                </div>
-                <div class="frame-wrapper-2">
-                  <div class="frame-3">
-                    <div class="text-wrapper-5">Программист</div>
-                    <div class="text-wrapper-6">Дмитрий Петров</div>
-                    <div class="text-wrapper-6">Стаж: 3 года</div>
-                  </div>
-                </div>
-              </div>
-              <div class="frame-4">
-                <p class="text-wrapper-7">
-                  Дмитрий - молодой и талантливый программист, специализирующийся на разработке веб-приложений. Он
-                  обладает отличными навыками программирования и уже успел зарекомендовать себя как перспективный
-                  специалист.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="view-9"><div class="text-wrapper-8">UI/UX дизайнеры</div></div>
-        <div class="text-wrapper-9">Програмисты</div>
-        <div class="ui-ux">
-          <div class="element-3">
-            <div class="view-6">
-              <div class="view-wrapper">
-                <div class="img-wrapper">
-                  <img class="rectangle" src="https://c.animaapp.com/sRU5GxZu/img/rectangle-128.svg" />
-                </div>
-              </div>
-              <div class="view-7">
-                <img class="rectangle-2" src="https://c.animaapp.com/sRU5GxZu/img/rectangle-130.svg" />
-              </div>
-              <div class="view-8"></div>
-            </div>
-            <div class="frame-wrapper">
-              <div class="frame">
-                <div class="frame-2">
-                  <div class="image-wrapper">
-                    <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/------------------------2.svg" />
-                  </div>
-                  <div class="frame-wrapper-2">
-                    <div class="frame-3">
-                      <div class="text-wrapper-5">Графический дизайнер</div>
-                      <div class="text-wrapper-6">Александр Ковалев</div>
-                      <div class="text-wrapper-6">Стаж: 8 лет</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-4">
-                  <p class="p">
-                    Александр - опытный дизайнер с большим портфолио успешных проектов. Он специализируется на создании
-                    уникальных и креативных пользовательских интерфейсов, которые привлекают внимание и улучшают
-                    пользовательский опыт.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="element-3">
-            <div class="view-6">
-              <div class="view-wrapper">
-                <div class="img-wrapper">
-                  <img class="image" src="https://c.animaapp.com/sRU5GxZu/img/image-4@2x.png" />
-                </div>
-              </div>
-              <div class="view-7"><img class="img" src="https://c.animaapp.com/sRU5GxZu/img/image-5@2x.png" /></div>
-              <div class="view-8"></div>
-            </div>
-            <div class="frame-wrapper">
-              <div class="frame">
-                <div class="frame-2">
-                  <div class="image-wrapper">
-                    <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/------------------------3.svg" />
-                  </div>
-                  <div class="frame-wrapper-2">
-                    <div class="frame-3">
-                      <div class="text-wrapper-5">Дизайнер</div>
-                      <div class="text-wrapper-6">Анна Иванова</div>
-                      <div class="text-wrapper-6">Стаж: 6 лет</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-4">
-                  <p class="p">
-                    Анна специализируется на создании пользовательских интерфейсов и опыта пользователей. Она имеет
-                    более 5 лет опыта работы в сфере дизайна и уже успела поработать над несколькими успешными
-                    проектами.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <img class="line" src="https://c.animaapp.com/sRU5GxZu/img/line-4.svg" />
+        <div class="view-7"><img class="img" src="https://c.animaapp.com/sRU5GxZu/img/image-1@2x.png" /></div>
+        <div class="view-8"></div>
       </div>
-      <footer class="footer">
-        <div class="footer-container">
-    
-          <div class="footer-left">
-            <img src="{{ url_for('static', path='/assets/favicon.svg') }}" alt="IDS Logo" style="position: relative;
-            left:-30px;
-            width: 150px;height: 100px;color: white;">
-            <div class="contact-info">
-              <h3>Связаться с нами:</h3>
-              <p>+7 977 777-77-77</p>
-              <p>support@ids.com</p>
+      <div class="frame-wrapper">
+        <div class="frame">
+          <div class="frame-2">
+            <div class="image-wrapper">
+              <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/-----------------------.svg" />
             </div>
-            <div class="contact-info">
-              <h3>Адреса:</h3>
-              <p>Санкт-Петербург, ул. Вязовая, д. 10, офис 49Н</p>
-              <p>Москва, ул. Ленинская Слобода, д. 19, оф. 706, БЦ «Омега плаза»</p>
-            </div>
-            <div class="contact-info">
-              <h3>Время работы:</h3>
-              <p>пн-пт: 10:00 — 19:00</p>
-            </div>
-            <div class="social-icons">
-              <a href="#" target="_blank"><img src="https://i.imgur.com/9H4Fp1D.png" width="24" height="24" alt="Facebook"></a>
-              <a href="#" target="_blank"><img src="https://i.imgur.com/JjR7s13.png" width="24" height="24" alt="Instagram"></a>
-              <a href="#" target="_blank"><img src="https://i.imgur.com/vQ0z9q6.png" width="24" height="24" alt="YouTube"></a>
-              <a href="#" target="_blank"><img src="https://i.imgur.com/F717z2K.png" width="24" height="24" alt="Twitter"></a>
+            <div class="frame-wrapper-2">
+              <div class="frame-3">
+                <div class="text-wrapper-5">Php разработчик</div>
+                <div class="text-wrapper-6">Николай Титов</div>
+                <div class="text-wrapper-6">Стаж: 9 лет</div>
+              </div>
             </div>
           </div>
-    
-          <div class="footer-right">
-            <div class="form-container">
-              <h3>Обсудить проект</h3>
-              <p>Для начала работы нам надо поговорить. Достаточно рассказать о своем проекте, указать контакты, и мы свяжемся, чтобы все обсудить.</p>
-              <form>
-                <div class="form-group">
-                  <input type="text" id="name" name="name" placeholder="Ваше имя">
+          <div class="frame-4">
+            <p class="p">
+              Николай - опытный программист с большим опытом работы в области разработки мобильных приложений. Он
+              обладает широкими знаниями в области программирования и всегда стремится к самосовершенствованию.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="element-2">
+      <div class="view-6">
+        <div class="view-wrapper">
+          <div class="img-wrapper">
+            <img class="image" src="https://c.animaapp.com/sRU5GxZu/img/image-2@2x.png" />
+          </div>
+        </div>
+        <div class="view-7"><img class="img" src="https://c.animaapp.com/sRU5GxZu/img/image-3@2x.png" /></div>
+        <div class="view-8"></div>
+      </div>
+      <div class="frame-wrapper">
+        <div class="frame">
+          <div class="frame-2">
+            <div class="image-wrapper">
+              <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/------------------------1.svg" />
+            </div>
+            <div class="frame-wrapper-2">
+              <div class="frame-3">
+                <div class="text-wrapper-5">Программист</div>
+                <div class="text-wrapper-6">Дмитрий Петров</div>
+                <div class="text-wrapper-6">Стаж: 3 года</div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-4">
+            <p class="text-wrapper-7">
+              Дмитрий - молодой и талантливый программист, специализирующийся на разработке веб-приложений. Он
+              обладает отличными навыками программирования и уже успел зарекомендовать себя как перспективный
+              специалист.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="view-9"><div class="text-wrapper-8">UI/UX дизайнеры</div></div>
+    <div class="text-wrapper-9">Програмисты</div>
+    <div class="ui-ux">
+      <div class="element-3">
+        <div class="view-6">
+          <div class="view-wrapper">
+            <div class="img-wrapper">
+              <img class="rectangle" src="https://c.animaapp.com/sRU5GxZu/img/rectangle-128.svg" />
+            </div>
+          </div>
+          <div class="view-7">
+            <img class="rectangle-2" src="https://c.animaapp.com/sRU5GxZu/img/rectangle-130.svg" />
+          </div>
+          <div class="view-8"></div>
+        </div>
+        <div class="frame-wrapper">
+          <div class="frame">
+            <div class="frame-2">
+              <div class="image-wrapper">
+                <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/------------------------2.svg" />
+              </div>
+              <div class="frame-wrapper-2">
+                <div class="frame-3">
+                  <div class="text-wrapper-5">Графический дизайнер</div>
+                  <div class="text-wrapper-6">Александр Ковалев</div>
+                  <div class="text-wrapper-6">Стаж: 8 лет</div>
                 </div>
-                <div class="form-group">
-                  <input type="tel" id="phone" name="phone" placeholder="Номер телефона">
-                </div>
-                <div class="form-group">
-                  <input type="email" id="email" name="email" placeholder="Электронная почта">
-                </div>
-                <div class="form-group">
-                  <textarea id="message" name="message" placeholder="Расскажите о вашем проекте"></textarea>
-                </div>
-                <div class="attach-file">
-                  <label for="file">Прикрепите файл</label>
-                  <input type="file" id="file" name="file">
-                </div>
-                <button type="submit" class="butfooter">Отправить заявку</button>
-              </form>
+              </div>
+            </div>
+            <div class="frame-4">
+              <p class="p">
+                Александр - опытный дизайнер с большим портфолио успешных проектов. Он специализируется на создании
+                уникальных и креативных пользовательских интерфейсов, которые привлекают внимание и улучшают
+                пользовательский опыт.
+              </p>
             </div>
           </div>
         </div>
-      </footer>
-    
-      <script src="{{ url_for('static', path='/js/common_part/header_footer.js') }}"></script>
+      </div>
+      <div class="element-3">
+        <div class="view-6">
+          <div class="view-wrapper">
+            <div class="img-wrapper">
+              <img class="image" src="https://c.animaapp.com/sRU5GxZu/img/image-4@2x.png" />
+            </div>
+          </div>
+          <div class="view-7"><img class="img" src="https://c.animaapp.com/sRU5GxZu/img/image-5@2x.png" /></div>
+          <div class="view-8"></div>
+        </div>
+        <div class="frame-wrapper">
+          <div class="frame">
+            <div class="frame-2">
+              <div class="image-wrapper">
+                <img class="image-2" src="https://c.animaapp.com/sRU5GxZu/img/------------------------3.svg" />
+              </div>
+              <div class="frame-wrapper-2">
+                <div class="frame-3">
+                  <div class="text-wrapper-5">Дизайнер</div>
+                  <div class="text-wrapper-6">Анна Иванова</div>
+                  <div class="text-wrapper-6">Стаж: 6 лет</div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-4">
+              <p class="p">
+                Анна специализируется на создании пользовательских интерфейсов и опыта пользователей. Она имеет
+                более 5 лет опыта работы в сфере дизайна и уже успела поработать над несколькими успешными
+                проектами.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
-</html>
+    <img class="line" src="https://c.animaapp.com/sRU5GxZu/img/line-4.svg" />
+  </div>     
+</div>
+  
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+
+{% endblock %}

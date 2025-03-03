@@ -38,20 +38,22 @@ async function  link() {
         let namedb=a[i];
 
         let sidebar=document.querySelector(".sidebar");
-        const link = document.createElement('a');
-        link.href = "#";
+        const link = document.createElement('p');
+  
         link.textContent = namedb;
         
       
         link.classList.add('nav-item1');
-     
-    
+        link.classList.add('active');
+    link.style.cursor = 'pointer';
       
         sidebar.appendChild(link);
            
         link.addEventListener("click", function() {
+       if (link.classList.contains('active')) {
             window.location.href = '/admin_db_tables';
-            localStorage.setItem("db", namedb); 
+            localStorage.setItem("db", namedb); }
+            
           });}
         }
 async function  perebor(namebd) {
@@ -198,7 +200,8 @@ async function handleGenerateFormClick(event) {
                 idtbValue1 = idtbValue; 
                 console.log('Значение idtb:', idtbValue);
                 document.querySelector('.new-record').style.display = 'flex';
-                await formgenerates(2);
+                 formgenerates(2);
+                 disable();
                 console.log("Форма сгенерирована");
             } else {
                 console.error('Не найдена ячейка с классом "idtb"');
@@ -208,13 +211,59 @@ async function handleGenerateFormClick(event) {
         }
     }
 }
-
+async function handleUpdateClick1() {
+  if (event.target.classList.contains('btn-save')) {
+    const form = document.querySelector('.new-record'); 
+    if (form) { 
+       const fileInput = document.getElementById('fileInput');
+  
+      fileInput.addEventListener('change', async  function ass(event)  {
+        const files = event.target.files;
+    
+        if (files.length > 0) {
+          console.log("Выбранные файлы:", files);
+          return files
+        
+        } else {
+          console.log("Файлы не выбраны");
+        }  });
+        const idtbValue = idtbValue1
+        console.log(idtbValue )
+        if (idtbValue) {
+            console.log("idtbValue", idtbValue)
+            try {
+              const files = await fileInput.files;
+       
+              const formData = new FormData();
+          
+              
+              for (let i = 0; i < files.length; i++) {
+                formData.append('myfile', files[i], files[i].name); 
+              }
+            
+              const response = await fetch(`/${name}/update/${idtbValue}`, {
+                method: 'PUT',
+                body: formData,
+              });
+            
+              if (response.ok) {
+                console.log('Обновление прошло успешно');
+                window.location.reload();
+              } else {
+                console.error('Ошибка при обновлении:', response.status, response.statusText);
+              }
+            } catch (error) {
+              console.error('Ошибка сети:', error);
+            }
+            }
+          }}
+}
 
 async function handleUpdateClick(event) {
     if (event.target.classList.contains('btn-save')) {
         const form = document.querySelector('.new-record'); 
         if (form) {
-
+          
             const datasink = {}; 
             const input = form.querySelectorAll('input'); 
             input.forEach(element => {
@@ -259,8 +308,14 @@ async function handleUpdateClick(event) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  if(names=="files"){
+    document.addEventListener('click', handleGenerateFormClick);
+    document.addEventListener('click', handleUpdateClick1);
+  }else{
     document.addEventListener('click', handleGenerateFormClick);
     document.addEventListener('click', handleUpdateClick);
+  }
+    
 });
   
   
