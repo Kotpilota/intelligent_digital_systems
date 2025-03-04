@@ -1,14 +1,13 @@
 <div class="modalBackground">
     <div class="modalActive">
         <div class="modalClose">
-            <img src="modalCross.svg" />
             <h2>Вход в систему</h2>
-            <form class="auth-form">
-                <input type="text" placeholder="Номер телефона" required>
-                <input type="password" placeholder="Пароль" required>
+            <form id="loginForm" class="auth-form">
+                <input type="text" id="phone" placeholder="Номер телефона" required>
+                <input type="password" id="password" placeholder="Пароль" required>
                 <button type="submit">Войти</button>
             </form>
+            <div id="errorMessage" style="color: red; display: none;"></div>
         </div>
-        <div class="modalWindow"></div>
     </div>
 </div>
