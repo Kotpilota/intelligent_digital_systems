@@ -1,6 +1,6 @@
 async function profile_data() {
     try {
-        const response = await fetch("  ", {
+        const response = await fetch("/auth/me", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

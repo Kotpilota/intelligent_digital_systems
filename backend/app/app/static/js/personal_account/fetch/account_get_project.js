@@ -28,15 +28,19 @@ const project_form = document.getElementById("project_table");
 
 console.log(project_form);
 
-Object.keys(obj_project_data).forEach(function(key){
-    if (key == "name"){
-        project_form[0].textContent = obj_project_data[key];
-        return
-    }else if (key == "description"){
-        project_form[1].textContent = obj_project_data[key];
-        return
-    }else if (key == "deadline"){
-        project_form[2].textContent = obj_project_data[key];
-        return
+function Table_project(obj_project_data) {
+    let containerContent = '';
+    for (let i = 0; i < Object.keys(obj_project_data).length; i++) {
+        const project = obj_project_data[i];
+        const name = project && project.name ? project.name : "Имя не указано";
+        const description = project && project.description ? project.description : "Описание не указано";
+        const deadline = project && project.deadline ? project.deadline : "Дедлайн не указан";
+        containerContent += `<div class="project-card bg-white p-6 rounded-lg shadow-md"><div class="flex justify-between items-start mb-4"><div><h3 class="text-xl font-semibold mb-2" id="project_table">${name}</h3><p class="text-gray-600">${description}</p></div><span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">В процессе</span></div><div class="mb-4"><div class="flex items-center mb-2"><span class="text-sm text-gray-600">Прогресс</span><span class="ml-auto text-sm font-medium">75%</span></div><div class="h-2 bg-gray-200 rounded"><div class="h-2 bg-blue-600 rounded" style="width: 75%"></div></div></div><div class="flex items-center"><div class="flex -space-x-2"><img src="https://ui-avatars.com/api/?name=Alex" class="w-8 h-8 rounded-full border-2 border-white"><img src="https://ui-avatars.com/api/?name=Maria" class="w-8 h-8 rounded-full border-2 border-white"><img src="https://ui-avatars.com/api/?name=John" class="w-8 h-8 rounded-full border-2 border-white"></div><span class="ml-4 text-sm text-gray-600">Дедлайн: ${deadline}</span></div></div>`;
     }
-});
+    if (project_form) {
+        project_form.innerHTML = containerContent;
+    } else {
+        console.error("Element with class 'task_form' not found.");
+    }
+};
+Table_project(obj_project_data);
