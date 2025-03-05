@@ -5,7 +5,7 @@
     --danger: #d32f2f;
     --background: #fafafa;
 }
-
+    
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -111,11 +111,11 @@ body {
     gap: 1.5rem;
 }
 
-.form-group {
+.form-elm{
     margin-bottom: 1rem;
 }
 
-.form-group label {
+.form-elm label {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--secondary);

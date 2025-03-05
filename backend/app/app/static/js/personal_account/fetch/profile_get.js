@@ -1,6 +1,6 @@
 async function profile_data() {
     try {
-        const response = await fetch("/auth/me", {
+        const response = await fetch("  ", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -60,4 +60,4 @@ Object.keys(obj_profile_data).forEach(function(key) {
         return
     }
     return
-});
+}); 
