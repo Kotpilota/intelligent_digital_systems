@@ -53,3 +53,83 @@ modalClose.addEventListener("click", function () {
     modalBackground.style.display = "none";
     document.body.style.overflow = "auto";
 });
+
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    
+    try {
+        const response = await fetch("/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                phone: phone,
+                password: password
+            }),
+            credentials: 'include' 
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            modalBackground.style.display = "none";
+            document.body.style.overflow = "auto";
+            window.location.reload();
+        } else {
+            showError(data.detail || "Ошибка авторизации");
+        }
+    } catch (error) {
+        showError("Ошибка сети или сервера");
+    }
+});
+
+function showError(message) {
+    const errorDiv = document.getElementById('errorMessage');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+    
+    setTimeout(() => {
+        errorDiv.style.display = 'none';
+    }, 5000);
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+const footerForm = document.querySelector('.footer-right form');
+
+footerForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value || 'Не указано';
+    const phone = document.getElementById('phone').value || 'Не указано';
+    const email = document.getElementById('email').value || 'Не указано';
+    const message = document.getElementById('message').value || 'Не указано';
+    const fileInput = document.getElementById('file');
+    const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'Файл не прикреплен';
+    
+    const recipientEmail = 'support@ids.com';
+    
+    const subject = 'Заявка на обсуждение проекта от ' + name;
+    
+    let body = 'Информация о заявке:\n\n';
+    body += 'Имя: ' + name + '\n';
+    body += 'Телефон: ' + phone + '\n';
+    body += 'Email: ' + email + '\n\n';
+    body += 'Сообщение:\n' + message + '\n\n';
+    body += 'Файл: ' + fileName + '\n\n';
+    body += 'Примечание: Файлы не прикрепляются автоматически. Пожалуйста, прикрепите их вручную к этому письму.';
+    
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' + 
+                    '&to=' + encodeURIComponent(recipientEmail) + 
+                    '&su=' + encodeURIComponent(subject) + 
+                    '&body=' + encodeURIComponent(body);
+    
+    window.open(gmailUrl, '_blank');
+});
+});

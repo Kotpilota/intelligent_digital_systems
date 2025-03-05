@@ -8,7 +8,8 @@ import re
 from app.schemas.project import Project
 
 class TaskBase(BaseModel):
-    
+
+
     name: str= Field(..., description="")
     description: str = Field(..., description="")
     project_id: int = Field(..., description="")

@@ -95,15 +95,8 @@ async def login(*, request: Request, response: Response, db: AsyncSession = Depe
             "user": user
         }
     
-    """ 
-    if user['role_id'] == 1:
-        return TEMPLATES.TemplateResponse("personal_account/profile.html", {"request": request, "data": data})
-    elif user['role_id'] == 2:
-        return TEMPLATES.TemplateResponse("personal_account/account.html", {"request": request, "data": data})
-    elif user['role_id'] in [3, 4]:
-        return TEMPLATES.TemplateResponse("admin/dashboard.html", {"request": request, "data": data})
+   
     """
-
     if user['role_id'] == 1:
         response = RedirectResponse(url='/profile', status_code=200)
         response.set_cookie(key="ids_user_access_token", value=access_token, httponly=True)
@@ -121,7 +114,9 @@ async def login(*, request: Request, response: Response, db: AsyncSession = Depe
         response.set_cookie(key="ids_user_access_token", value=access_token, httponly=True)
         response.body = data
         return response
+    """
 
+    return data
 
 @router.post("/logout")
 async def logout_user(response: Response):

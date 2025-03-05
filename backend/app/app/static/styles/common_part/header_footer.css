@@ -161,7 +161,6 @@ transition: width 0.3s ease-in-out;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #555;
     color: #fff;
     text-decoration: none;
   }
@@ -242,6 +241,7 @@ transition: width 0.3s ease-in-out;
     padding: 8px 12px;
     border-radius: 4px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 /* Стили для hover-эффекта */
@@ -249,3 +249,4 @@ transition: width 0.3s ease-in-out;
     background-color: #f0f0f0;
     color: #000;
 }
+
