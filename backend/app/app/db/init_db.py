@@ -8,6 +8,7 @@ from app.db import base  # noqa: F401
 from app.core.config import settings
 from app.core.security import get_password_hash
 import time
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +40,14 @@ DEFAULT_USERS = [
 
 ]
 
+DEFAULT_PROJECTS = [
+    {
+        "name": "Backend",
+        "description": "Python Backend",
+        "started_at": "2025-03-15 00:00:00",
+        "deadline": "2025-05-15 00:00:00"
+    }
+]
 
 # make sure all SQL Alchemy models are imported (app.db.base) before initializing DB
 # otherwise, SQL Alchemy might fail to initialize relationships properly
@@ -163,5 +172,30 @@ async def init_db(db: AsyncSession) -> None:
             "Skipping creating superuser.  FIRST_ADMIN needs to be "
             "provided as an env variable. "
         )
+    time.sleep(1)
+
+
+    # Here is the start of creating project #######################################################################
+    project_result = await crud.project.get_all(db=db)
+
+    if not project_result:
+        for default_project in DEFAULT_PROJECTS:
+            project_in = schemas.ProjectCreate(
+                name = default_project['name'],
+                description = default_project['description'],
+                started_at = datetime.strptime(default_project['started_at'], '%Y-%m-%d %H:%M:%S') ,
+                deadline = datetime.strptime(default_project['deadline'], '%Y-%m-%d %H:%M:%S')  
+            ) 
+            
+            project = await crud.project.create(db, obj_in=project_in)  
+    else:
+        logger.warning(
+                "Skipping creating project. Project already exists. "
+            )
+
+    time.sleep(1)
+
+
+       
 
     # Here is the end of an example that has to be replaced in your project
