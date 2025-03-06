@@ -1,46 +1,16 @@
-<!DOCTYPE html5>
-<html>
-<head>
- <!-- <base href="/">Я создам современный личный кабинет сотрудника IT-компании с основными функциями. Вот полный интерактивный код:
-```html>-->
-
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IT Employee Dashboard</title>
+{% extends "common_part/base.html" %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block styles %}
+  {{ super() }} 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{ url_for('static', path='/styles/personal_account/account.css') }}">
-
-</head>
-<body class="bg-gray-50">
-
-  <!-- Навигация -->
-  <nav class="bg-blue-600 text-white p-4 fixed w-full top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center">
-        <img src="{{ url_for('static', path='/assets/logo.png') }}" style="width: 15%">
-      </div>
-      
-      <div class="flex items-center space-x-4">
-        <button id="notifications" class="p-2 hover:bg-blue-700 rounded-full">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-          </svg>
-        </button>
-        
-        <div class="flex items-center">
-          <img src="https://ui-avatars.com/api/?name=John+Doe" class="w-8 h-8 rounded-full">
-          <span class="ml-2">Иван Петров</span>
-        </div>
-      </div>
-    </div>
-  </nav>
+{% endblock %}
+{% block content %}
 
   <!-- Основной контент -->
-  <div class="flex min-h-screen pt-16">
+  <div class="flex min-h-screen">
     <!-- Боковое меню -->
-    <aside class="w-64 bg-white shadow-lg fixed h-full">
+    <aside class="w-64 bg-white shadow-lg absolute h-full">
       <div class="p-4 space-y-2">
         <a href="https://dashboard.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,8 +90,10 @@
     </main>
   </div>
 
-  <script src="{{ url_for('static', path='/js/personal_account/account.js') }}"></script>
-  <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_tasks.js') }}"></script>
-  <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_project.js') }}"></script>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+    <script src="{{ url_for('static', path='/js/personal_account/account.js') }}"></script>
+    <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_tasks.js') }}"></script>
+    <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_project.js') }}"></script>
+{% endblock %}

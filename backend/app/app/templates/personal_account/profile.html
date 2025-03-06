@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <!--<base href="https://admin-db-dashboard.example.com/">-->
-  <meta charset="UTF-8">
-  <title>Профиль пользователя</title>
+{% extends "common_part/base.html" %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block styles %}
+  {{ super() }} 
   <link rel="stylesheet" href="{{ url_for('static', path='/styles/personal_account/profile.css') }}">
-</head>
-<body>
+{% endblock %}
+{% block content %}
+
 <div class="dashboard">
   <aside class="sidebar">
     <nav>
-      <a href="https://admin-db-dashboard.example.com/dashboard" class="nav-item">
+      <a class="nav-item" id="nav_main">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        Главная
+      </a>
+      <a class="nav-item">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
         </svg>
@@ -43,27 +48,27 @@
     <div class="profile-section">
       <h2>Личная информация</h2>
       <form id="profile-form" class="form-grid">
-        <div class="form-group">
+        <div class="form-elm">
           <label>Имя</label>
           <input type="text" class="form-control" id="firstname" value="Not found" required>
         </div>
-        <div class="form-group">
+        <div class="form-elm">
           <label>Фамилия</label>
           <input type="text" class="form-control" id="lastname" value="Not found" required>
         </div>
-        <div class="form-group">
+        <div class="form-elm">
           <label>Email</label>
           <input type="email" class="form-control" id="email" value="Not found" required>
         </div>
-        <div class="form-group">
+        <div class="form-elm">
           <label>Телефон</label>
           <input type="tel" class="form-control" id="phone-number" value="Not found">
         </div>
-        <div class="form-group">
+        <div class="form-elm">
           <label>Должность</label>
           <input type="text" class="form-control" id="role" value="Not found" readonly>
         </div>
-        <div class="form-group">
+        <div class="form-elm">
           <label>Дата регистрации</label>
           <input type="text" class="form-control" id="reg-data" value="Not found" readonly> 
         </div>
@@ -101,8 +106,13 @@
   </main>
 </div>
 
-<script type="module" src="{{ url_for('static', path='/js/personal_account/fetch/profile_get.js') }}"></script>
-<script src="{{ url_for('static', path='/js/personal_account/profile.js') }}"></script>
-<script src="{{ url_for('static', path='/js/admin/dropfile.js') }}"></script>
-</body>
-</html>
+
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+  <script type="module" src="{{ url_for('static', path='/js/personal_account/fetch/profile_get.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/personal_account/sidebar_nav.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/personal_account/profile.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/admin/dropfile.js') }}"></script>
+{% endblock %}
+
