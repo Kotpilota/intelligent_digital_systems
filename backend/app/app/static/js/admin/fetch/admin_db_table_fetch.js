@@ -3,6 +3,8 @@ let s = storedData.split("");
 s.pop();
 let name = s.join("");
 localStorage.setItem("endpointname", name);
+const token = localStorage.getItem("token");
+console.log("token", token);
 if (storedData) {
   document.querySelector(".namebd").textContent =
     "Записи таблицы " + storedData;

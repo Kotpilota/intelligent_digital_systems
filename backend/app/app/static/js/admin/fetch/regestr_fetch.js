@@ -25,7 +25,11 @@ async function regpost() {
   const data = await res.json();
   console.log(data);
   if (data) {
-    localStorage.setItem("token", data.nickname);
+    localStorage.setItem("token", nickname);
   }
 }
-document.querySelector(".button").addEventListener("click", regpost);
+document.addEventListener("click", async function (event) {
+  if (event.target.classList.contains("button")) {
+    regpost();
+  }
+});
