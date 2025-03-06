@@ -143,3 +143,17 @@ body {
 .input-area.hidden {
     display: none;
 }
+.btn_head_chat{
+    margin-right: 20px;
+    width: 70px;
+    height: 25px;
+    background-color: #2980b9;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s
+}
+.vidoe{
+    width: 120px;
+}

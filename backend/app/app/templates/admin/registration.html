@@ -16,7 +16,7 @@
 
       <div class="input-group">
         <label>Телефон</label>
-        <input type="tel" id="phone" placeholder="Введите ваш телефон" required>
+        <input type="tel" id="phone1" placeholder="Введите ваш телефон" required>
         <div class="error" id="lastNameError">Пожалуйста, введите корректную фамилию</div>
       </div>
      
@@ -24,7 +24,7 @@
 
       <div class="input-group">
         <label>Пароль</label>
-        <input type="password" id="password" placeholder="Введите пароль" required>
+        <input type="password" id="password1" placeholder="Введите пароль" required>
         <div class="error" id="passwordError">Пароль должен содержать минимум 8 символов</div>
       </div>
 
@@ -35,8 +35,12 @@
       </div>
       <div class="input-group">
         <label>Role id</label>
-        <input type="number" id="role" placeholder="id" required>
-        <div class="error" id="confirmPasswordError">Пароли не совпадают</div>
+        <select id="role" name="role">
+          <option value="1">employee</option>
+          <option value="2">teamlead</option>
+          <option value="3">admin</option>
+          <option value="4">ceo</option>
+        </select>
       </div>
 
 
@@ -47,4 +51,5 @@
 {% block scripts %}
   {{ super() }} 
   <script src="{{ url_for('static', path='/js/admin/fetch/regestr_fetch.js') }}"></script>
+
 {% endblock %}
