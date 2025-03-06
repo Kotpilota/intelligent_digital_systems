@@ -56,6 +56,8 @@ body {
     padding: 15px;
     background: #f5f5f5;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: row;
 }
 
 .messages-container {
@@ -125,4 +127,27 @@ body {
 
 .input-area.hidden {
     display: none;
+}
+.buttons_head{
+display: flex;
+flex-direction: row;
+width: 50%;
+align-items: center;
+justify-content: flex-end;
+position: absolute;
+
+}
+.btn_head_chat{
+    margin-right: 20px;
+    width: 70px;
+    height: 25px;
+    background-color: #2980b9;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s
+}
+.vidoe{
+    width: 120px;
 }
