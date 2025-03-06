@@ -83,7 +83,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
                 window.location.href = '/profile';
             } else if (data.user.role_id === 2) {
                 window.location.href = '/account';
-            } else if (data.user.role_id === 3 || 4) {
+            } else if (data.user.role_id === 3 || data.user.role_id === 4) {
                 window.location.href = '/dashboard';
             } else {
                 window.location.reload();
