@@ -79,7 +79,15 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         if (response.ok) {
             modalBackground.style.display = "none";
             document.body.style.overflow = "auto";
-            window.location.reload();
+            if (data.user.role_id === 1) {
+                window.location.href = '/profile';
+            } else if (data.user.role_id === 2) {
+                window.location.href = '/account';
+            } else if (data.user.role_id === 3 || 4) {
+                window.location.href = '/dashboard';
+            } else {
+                window.location.reload();
+            }
         } else {
             showError(data.detail || "Ошибка авторизации");
         }
