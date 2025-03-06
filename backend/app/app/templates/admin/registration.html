@@ -1,26 +1,26 @@
-<html><head><base href=""><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Регистрация</title>
+{% extends "common_part/base.html" %}
+{% block title %}Регистрация{% endblock %}
+{% block styles %}
+  {{ super() }} 
   <link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/registration.css') }}">
-</head><body>
+{% endblock %}
+{% block content %}
   <div class="container">
     <div class="title">Регистрация</div>
     <form class="form" id="registrationForm">
       <div class="input-group">
-        <label>Имя</label>
-        <input type="text" id="firstName" placeholder="Введите ваше имя" required>
+        <label>Логин</label>
+        <input type="text" id="nickName" placeholder="Введите ваш Логин" required>
         <div class="error" id="firstNameError">Пожалуйста, введите корректное имя</div>
       </div>
 
       <div class="input-group">
-        <label>Фамилия</label>
-        <input type="text" id="lastName" placeholder="Введите вашу фамилию" required>
+        <label>Телефон</label>
+        <input type="tel" id="phone" placeholder="Введите ваш телефон" required>
         <div class="error" id="lastNameError">Пожалуйста, введите корректную фамилию</div>
       </div>
-
-      <div class="input-group">
-        <label>Email</label>
-        <input type="email" id="email" placeholder="Введите ваш email" required>
-        <div class="error" id="emailError">Пожалуйста, введите корректный email</div>
-      </div>
+     
+    
 
       <div class="input-group">
         <label>Пароль</label>
@@ -33,13 +33,18 @@
         <input type="password" id="confirmPassword" placeholder="Подтвердите пароль" required>
         <div class="error" id="confirmPasswordError">Пароли не совпадают</div>
       </div>
+      <div class="input-group">
+        <label>Role id</label>
+        <input type="number" id="role" placeholder="id" required>
+        <div class="error" id="confirmPasswordError">Пароли не совпадают</div>
+      </div>
+
 
       <button type="submit" class="button">Зарегистрироваться</button>
     </form>
   </div>
-
-  <script src="{{ url_for('static', path='/js/admin/registration.js') }}">
-
-  </script>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+  <script src="{{ url_for('static', path='/js/admin/fetch/regestr_fetch.js') }}"></script>
+{% endblock %}

@@ -1,46 +1,16 @@
-<!DOCTYPE html5>
-<html>
-<head>
- <!-- <base href="/">Я создам современный личный кабинет сотрудника IT-компании с основными функциями. Вот полный интерактивный код:
-```html>-->
-
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IT Employee Dashboard</title>
+{% extends "common_part/base.html" %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block styles %}
+  {{ super() }} 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{ url_for('static', path='/styles/personal_account/account.css') }}">
-
-</head>
-<body class="bg-gray-50">
-
-  <!-- Навигация -->
-  <nav class="bg-blue-600 text-white p-4 fixed w-full top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center">
-        <img src="{{ url_for('static', path='/assets/logo.png') }}" style="width: 15%">
-      </div>
-      
-      <div class="flex items-center space-x-4">
-        <button id="notifications" class="p-2 hover:bg-blue-700 rounded-full">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-          </svg>
-        </button>
-        
-        <div class="flex items-center">
-          <img src="https://ui-avatars.com/api/?name=John+Doe" class="w-8 h-8 rounded-full">
-          <span class="ml-2">Иван Петров</span>
-        </div>
-      </div>
-    </div>
-  </nav>
+{% endblock %}
+{% block content %}
 
   <!-- Основной контент -->
-  <div class="flex min-h-screen pt-16">
+  <div class="flex min-h-screen">
     <!-- Боковое меню -->
-    <aside class="w-64 bg-white shadow-lg fixed h-full">
+    <aside class="w-64 bg-white shadow-lg absolute h-full">
       <div class="p-4 space-y-2">
         <a href="https://dashboard.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,26 +53,8 @@
     <main class="ml-64 flex-1 p-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <!-- Статистика -->
-        <div class="stats-card bg-white p-6 rounded-lg shadow-md">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold">Активные задачи</h3>
-            <span class="text-2xl font-bold text-blue-600">8</span>
-          </div>
-          <div class="h-2 bg-gray-200 rounded">
-            <div class="h-2 bg-blue-600 rounded" style="width: 75%"></div>
-          </div>
+        <div class="stats-card bg-white p-6 rounded-lg shadow-md" id="task_bar">
         </div>
-        
-        <!-- <div class="stats-card bg-white p-6 rounded-lg shadow-md">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold">Часы за неделю</h3>
-            <span class="text-2xl font-bold text-green-600">32</span>
-          </div>
-          <div class="h-2 bg-gray-200 rounded">
-            <div class="h-2 bg-green-600 rounded" style="width: 80%"></div>
-          </div>
-        </div> -->
-        
         <div class="stats-card bg-white p-6 rounded-lg shadow-md">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold">Эффективность</h3>
@@ -116,59 +68,7 @@
 
       <!-- Текущие проекты -->
       <h2 class="text-2xl font-bold mb-6">Текущие проекты</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="project-card bg-white p-6 rounded-lg shadow-md">
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <h3 class="text-xl font-semibold mb-2">Редизайн платформы</h3>
-              <p class="text-gray-600">Frontend разработка</p>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">В процессе</span>
-          </div>
-          <div class="mb-4">
-            <div class="flex items-center mb-2">
-              <span class="text-sm text-gray-600">Прогресс</span>
-              <span class="ml-auto text-sm font-medium">75%</span>
-            </div>
-            <div class="h-2 bg-gray-200 rounded">
-              <div class="h-2 bg-blue-600 rounded" style="width: 75%"></div>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <div class="flex -space-x-2">
-              <img src="https://ui-avatars.com/api/?name=Alex" class="w-8 h-8 rounded-full border-2 border-white">
-              <img src="https://ui-avatars.com/api/?name=Maria" class="w-8 h-8 rounded-full border-2 border-white">
-              <img src="https://ui-avatars.com/api/?name=John" class="w-8 h-8 rounded-full border-2 border-white">
-            </div>
-            <span class="ml-4 text-sm text-gray-600">Дедлайн: 20 декабря</span>
-          </div>
-        </div>
-
-        <div class="project-card bg-white p-6 rounded-lg shadow-md">
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <h3 class="text-xl font-semibold mb-2">API Интеграция</h3>
-              <p class="text-gray-600">Backend разработка</p>
-            </div>
-            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded">Ожидает</span>
-          </div>
-          <div class="mb-4">
-            <div class="flex items-center mb-2">
-              <span class="text-sm text-gray-600">Прогресс</span>
-              <span class="ml-auto text-sm font-medium">45%</span>
-            </div>
-            <div class="h-2 bg-gray-200 rounded">
-              <div class="h-2 bg-yellow-600 rounded" style="width: 45%"></div>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <div class="flex -space-x-2">
-              <img src="https://ui-avatars.com/api/?name=Steve" class="w-8 h-8 rounded-full border-2 border-white">
-              <img src="https://ui-avatars.com/api/?name=Anna" class="w-8 h-8 rounded-full border-2 border-white">
-            </div>
-            <span class="ml-4 text-sm text-gray-600">Дедлайн: 15 января</span>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6" id="project_table">
       </div>
 
       <!-- Последние задачи -->
@@ -183,51 +83,17 @@
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Дедлайн</th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-900">Обновление компонентов</div>
-                <div class="text-sm text-gray-500">Frontend</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Выполнено
-                </span>
-              </td>
-              <!-- <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                  Высокий
-                </span>
-              </td> -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                19 декабря
-              </td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-900">Оптимизация базы данных</div>
-                <div class="text-sm text-gray-500">Backend</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                  В процессе
-                </span>
-              </td>
-              <!-- <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                  Средний
-                </span>
-              </td> -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                23 декабря
-              </td>
-            </tr>
+          <tbody class="bg-white divide-y divide-gray-200" id="task_table">
           </tbody>
         </table>
       </div>
     </main>
   </div>
 
-  <script src="{{ url_for('static', path='/js/personal_account/account.js') }}"></script>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+    <script src="{{ url_for('static', path='/js/personal_account/account.js') }}"></script>
+    <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_tasks.js') }}"></script>
+    <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_project.js') }}"></script>
+{% endblock %}

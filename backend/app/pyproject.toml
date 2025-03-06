@@ -33,6 +33,7 @@ anyio = "4.7.0"
 eralchemy = {extras = ["graphviz"], version = "^1.5.0"}
 charset-normalizer = "^3.4.1"
 bcrypt = "^4.2.1"
+sendgrid = "^6.11.0"
 
 [tool.poetry.dev-dependencies]
 

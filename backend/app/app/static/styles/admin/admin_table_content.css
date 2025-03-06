@@ -37,6 +37,7 @@
   }
   
   .nav-item {
+    
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
@@ -45,6 +46,7 @@
     border-radius: 8px;
     margin-bottom: 0.5rem;
     transition: background 0.2s;
+   
   }
   
   .nav-item:hover {
@@ -188,6 +190,7 @@
     margin-bottom: 0.5rem;
     transition: background 0.2s;
   }
+  
   .table thead{
     width: 100%;
     display: flex;
@@ -207,8 +210,8 @@
   display: flex;
   flex-direction: column;
 }
-css
 
+css
 .table {
   display: grid;
   width: 100%;
@@ -324,4 +327,16 @@ input[type="file"]{
     color: #fff;
   }
 
+}
+.a{
+  font-size: 30px;
+}
+h3{
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+.tbody{
+  display: flex;
+  width: 100%;
 }

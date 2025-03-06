@@ -47,7 +47,7 @@ async def create_assigned_task(*, db: AsyncSession = Depends(deps.get_db),
 
     str_assigned_at = assigned_task_in.assigned_at.strftime("%d-%m-%Y")
     str_deadline = assigned_task_in.deadline.strftime("%d-%m-%Y")
-    assigned_task_in.assigned_at.started_at = datetime.strptime(str_assigned_at, "%d-%m-%Y")
+    assigned_task_in.assigned_at = datetime.strptime(str_assigned_at, "%d-%m-%Y")
     assigned_task_in.deadline = datetime.strptime(str_deadline, "%d-%m-%Y")
 
     return await crud.assigned_task.create(db=db, obj_in=assigned_task_in)
@@ -65,7 +65,7 @@ async def update_assigned_task(*, db: AsyncSession = Depends(deps.get_db),
 
     str_assigned_at = assigned_task_in.assigned_at.strftime("%d-%m-%Y")
     str_deadline = assigned_task_in.deadline.strftime("%d-%m-%Y")
-    assigned_task_in.assigned_at.started_at = datetime.strptime(str_assigned_at, "%d-%m-%Y")
+    assigned_task_in.assigned_at = datetime.strptime(str_assigned_at, "%d-%m-%Y")
     assigned_task_in.deadline = datetime.strptime(str_deadline, "%d-%m-%Y")
 
     assigned_task = await crud.assigned_task.get_by_id(db=db, id=id)
