@@ -1,6 +1,11 @@
-<html><head><base href="." /><title>Modern Admin Dashboard</title>
-<link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/dashboard.css') }}">
-</head><body>
+{% extends "common_part/base.html" %}
+{% block title %}Modern Admin Dashboard{% endblock %}
+{% block styles %}
+  {{ super() }} 
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/dashboard.css') }}">
+{% endblock %}
+{% block content %}
+
 <div class="dashboard">
   <div class="sidebar">
     <div class="logo">
@@ -19,9 +24,9 @@
   </div>
   
   <main class="main-content">
-    <div class="header">
+    <div class="head_line">
       <h1>Dashboard Overview</h1>
-      <input type="search" class="search" placeholder="Search...">
+      <input type="search" class="search_db" placeholder="Search...">
     </div>
     
     <div class="cards">
@@ -64,7 +69,9 @@
   </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="  {{ url_for('static', path='js/admin/dashboard.js') }} ">
-</script>
-</body></html>
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="  {{ url_for('static', path='js/admin/dashboard.js') }} "></script>
+{% endblock %}

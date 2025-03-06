@@ -1,19 +1,17 @@
-<html><head><!--<base href="https://admin-db-dashboard.example.com/">-->
-<meta charset="UTF-8">
-<title>Администрирование записей таблицы</title>
-<link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/admin_table_content.css') }} ">
-</head>
-<body>
+{% extends "common_part/base.html" %}
+{% block title %}Администрирование записей таблицы{% endblock %}
+{% block styles %}
+  {{ super() }} 
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/admin_table_content.css') }} ">
+{% endblock %}
+{% block content %}
+
   <div class="new-record">
     <div class=" card1"><h2>Новая запись</h2>
     <form class="form"></form>
     <div class="btn-osn">
     </div>
-   
-  
   </div>
-
-
 
 </div>
 <div class="backgr"></div>
@@ -47,7 +45,6 @@
       </div>
   
       <table class="table">
-      
         
       </table>
 
@@ -70,10 +67,10 @@
 
 </div>
 
-<script src="{{ url_for('static', path='/js/admin/admin_table_content.js') }}">
-
-</script>
-<script src="{{ url_for('static', path='/js/admin/fetch/admin_db_table_fetch.js') }}"></script>
-<script src="{{ url_for('static', path='/js/admin/fetch/admin_db_table_zapis_fetch.js') }}"></script>
-
-</body></html>
+{% endblock %}
+{% block scripts %}
+  {{ super() }} 
+  <script src="{{ url_for('static', path='/js/admin/admin_table_content.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/admin/fetch/admin_db_table_fetch.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/admin/fetch/admin_db_table_zapis_fetch.js') }}"></script>
+{% endblock %}
