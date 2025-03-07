@@ -195,7 +195,82 @@ async def init_db(db: AsyncSession) -> None:
 
     time.sleep(1)
 
+    # Here is the start of creating location #######################################################################
+    locations = [{'country' : 'Россия', 'city':'Москва'}, {'country':'Россия', 'city':'Санкт-Петербург'} , {'country':'Бенин', 'city':'Котону'} ,
+                  {'country':'Франция', 'city':'Париж'} ]
+    location_result = await crud.location.get_all(db=db)
 
+    if not location_result:
+        for location in locations:
+            location_in = schemas.LocationCreate(city=location['city'], country=location['country'])
+            location = await crud.location.create(db, obj_in=location_in)
+    else:
+        logger.warning(
+                "Skipping creating location. Location already exists. "
+            )
+
+    time.sleep(1)
        
+
+
+    # Here is the start of creating location #######################################################################
+    jobs = [
+            {
+            'company' : 'Intelligent Digital Systems', 
+             'description':'test', 
+             'employment_level_id': 1,
+             'employment_type_id': 2,
+             'location_id': 3,
+             'position': 'test',
+             'salary': 500000
+             },
+
+             {
+            'company' : 'LLC Yandex ', 
+             'description':'Description', 
+             'employment_level_id': 2,
+             'employment_type_id': 1,
+             'location_id': 4,
+             'position': 'test',
+             'salary': 200000
+             },
+             {
+            'company' : 'VKontakte', 
+             'description':'Младший программист С/C++', 
+             'employment_level_id': 1,
+             'employment_type_id': 2,
+             'location_id': 3,
+             'position': 'test',
+             'salary': 500000
+             },
+
+             {
+            'company' : 'SuperJob', 
+             'description':'Description', 
+             'employment_level_id': 2,
+             'employment_type_id': 1,
+             'location_id': 4,
+             'position': 'test',
+             'salary': 200000
+             }
+            ]
+    job_result = await crud.job.get_all(db=db)
+
+    if not job_result:
+        for job in jobs:
+            job_in = schemas.JobCreate(company=job['company'], 
+                                       description=job['description'], 
+                                       employment_level_id=job['employment_level_id'], 
+                                       employment_type_id=job['employment_type_id'],
+                                       location_id=job['location_id'],
+                                       position=job['position'],
+                                       salary=job['salary'])
+            job = await crud.job.create(db, obj_in=job_in)
+    else:
+        logger.warning(
+                "Skipping creating job. Job already exists. "
+            )
+
+    time.sleep(1)
 
     # Here is the end of an example that has to be replaced in your project
