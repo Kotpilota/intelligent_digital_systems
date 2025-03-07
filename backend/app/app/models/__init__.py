@@ -28,3 +28,4 @@ from .skill import Skill
 from .skill_type import Skill_Type
 from .task import Task
 from .task_status import Task_Status
+from .mail import Mail

@@ -23,7 +23,7 @@ from  app.api.api_v1.endpoints.personal_account import (
 from app.api.api_v1.endpoints import (endpoint_assigned_task, endpoint_employment_level, endpoint_employment_type, 
                                       endpoint_has_skill, endpoint_location, endpoint_participant, endpoint_project, 
                                       endpoint_project_document, endpoint_project_document_type, endpoint_skill, 
-                                      endpoint_skill_type)
+                                      endpoint_skill_type, endpoint_mail)
 
 
 api_router = APIRouter()
@@ -84,3 +84,6 @@ api_router.include_router(endpoint_assigned_tasks_page.router, prefix="", tags=[
 api_router.include_router(endpoint_chat_page_enter.router, prefix="", tags=["chat_page_enter"])
 api_router.include_router(endpoint_chat_page_exit.router, prefix="", tags=["chat_page_exit"])
 api_router.include_router(endpoint_profile.router, prefix="", tags=["profile"])
+
+
+api_router.include_router(endpoint_mail.router, prefix="", tags=["mail"])

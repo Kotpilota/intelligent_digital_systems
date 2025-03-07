@@ -31,6 +31,7 @@ from .skill import Skill, SkillCreate, SkillUpdate, SkillInDBBase
 from .skill_type import Skill_Type, Skill_TypeCreate, Skill_TypeUpdate, Skill_TypeInDBBase
 from .task import Task, TaskCreate, TaskUpdate, TaskInDBBase
 from .task_status import Task_Status, Task_StatusCreate, Task_StatusUpdate, Task_StatusInDBBase
+from .mail import Mail, MailCreate, MailUpdate
 
 
 

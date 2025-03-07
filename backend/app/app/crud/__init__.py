@@ -25,5 +25,6 @@ from .crud_skill import skill
 from .crud_skill_type import skill_type
 from .crud_task import task
 from .crud_task_status import task_status
+from .crud_mail import mail
 
 

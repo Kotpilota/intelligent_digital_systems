@@ -1,0 +1,36 @@
+from pydantic import BaseModel, HttpUrl, Field
+from typing import Sequence, Optional, Dict
+from fastapi.encoders import jsonable_encoder
+from datetime import datetime
+from typing import Any
+
+
+class MailBase(BaseModel):
+    name: str = Field(..., description="")
+    phone: int = Field(..., description="")
+    mail: float = Field(..., description="")
+    description: bool = Field(..., description="")
+    file_id: bool = Field(..., description="")
+    file: Any = Field(..., description="")
+    
+
+class MailCreate(MailBase):
+    pass
+
+
+class MailUpdate(MailBase):
+    ...
+
+
+class MailInDBBase(MailBase):
+    id: Optional[int] = Field(description="", default=None)
+    created_at: datetime = Field(..., description="")
+    updated_at: datetime = Field(..., description="")
+    
+    class Config:
+        from_attributes = True
+
+
+class Mail(MailInDBBase):
+    ...
+
