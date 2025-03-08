@@ -7,6 +7,27 @@
      <link rel="stylesheet" href="{{ url_for('static', path='/styles/personal_account/chat_page_enter.css') }}">
 </head>
 <body>
+    <div class="vizov-window">
+  <h2>Звонок</h2>
+
+  <button id="closeButton">Закрыть</button>
+</div>
+<div class="video-window">
+    <h1>WebRTC Client</h1>
+
+    <div id="videos">
+        <video id="localVideo" autoplay muted></video>
+        <video id="remoteVideo" autoplay></video>
+    </div>
+
+    <div id="buttons">
+        <button id="startButton">Start</button>
+        <button id="callButton" disabled>Call</button>
+        <button id="hangupButton" disabled>Hang Up</button>
+    </div>
+    <button id="closeButton1">Закрыть</button>
+    <div id="status"></div>
+</div>
 <div class="chat-container">
     <div class="users-list">
         <div class="user-item">John Doe</div>
@@ -22,8 +43,8 @@
         <div class="chat-header">
             <h3>Выберите собеседника</h3>
             <div class="buttons_head">
-            <button class="vizov btn_head_chat">звонок</button>
-            <button class="video btn_head_chat">видео-звонок</button>
+            <img class="vizov btn-zvon " src="{{ url_for('static', path='/assets/call.svg') }}">
+            <img class="videos  btn-zvon" src="{{ url_for('static', path='/assets/video-call.png') }}">
             </div>
         </div>
         <div class="messages-container">
@@ -37,5 +58,6 @@
 </div>
 
 <script src="{{ url_for('static', path='/js/personal_account/chat_page_enter.js') }}"></script>
+<script src="{{ url_for('static', path='/js/personal_account/zvonok_window.js') }}"></script>
 </body>
 </html>

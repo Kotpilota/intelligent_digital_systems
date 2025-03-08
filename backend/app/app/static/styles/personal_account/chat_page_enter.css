@@ -131,23 +131,78 @@ body {
 .buttons_head{
 display: flex;
 flex-direction: row;
-width: 50%;
+width: 500px;
 align-items: center;
-justify-content: flex-end;
+justify-content: end;
 position: absolute;
 
 }
-.btn_head_chat{
-    margin-right: 20px;
-    width: 70px;
-    height: 25px;
-    background-color: #2980b9;
-    border: none;
-    border-radius: 10px;
-    color: rgb(247, 233, 233);
+.btn-zvon{
+    position: relative;
+    top: -20px;
     cursor: pointer;
-    transition: 0.3s
+
 }
-.video{
-    width: 120px;
+.videos{
+    width: 60px;
 }
+.vizov{
+    width: 40px;
+}
+.vizov-window{
+    width: 500px;
+    height: 800px;
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    padding: 20px;
+display: none;
+flex-direction: column;
+    z-index: 1000; 
+    cursor: grab;}
+    .video-window{
+        width: 1000px;
+        height: 700px;
+        position: fixed; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        background-color: rgb(255, 255, 255);
+        border: 1px solid black;
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        z-index: 1000; 
+        cursor: grab;
+    }
+    #videos {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    video {
+        width: 320px;
+        height: 240px;
+        background-color: #222;
+        margin: 5px;
+    }
+
+    #buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #status {
+        margin-top: 20px;
+        font-weight: bold;
+    }
