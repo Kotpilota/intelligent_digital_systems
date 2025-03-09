@@ -250,3 +250,28 @@ transition: width 0.3s ease-in-out;
     color: #000;
 }
 
+.user-profile {
+  display: flex;
+  align-items: center; /* Выравнивание по вертикали */
+  gap: 8px; /* Отступ между аватаркой и никнеймом */
+  cursor: pointer; /* Указывает, что это интерактивный элемент */
+}
+
+.user-avatar {
+  width: 32px; /* Размер круга */
+  height: 32px;
+  border-radius: 50%; /* Круг */
+  background-color: #ccc; /* Светло-серый фон */
+  color: white;
+  display: flex;
+  justify-content: center; /* Центрирование текста по горизонтали */
+  align-items: center; /* Центрирование текста по вертикали */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.user-nickname {
+  font-size: 16px;
+}
+
+

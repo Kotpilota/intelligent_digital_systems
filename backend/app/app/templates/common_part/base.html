@@ -17,7 +17,7 @@
     
     {% include "common_part/components/footer.html" %}
 
-    <script src="{{ url_for('static', path='/js/common_part/header_footer.js') }} "></script>
+    <script type="module" src="{{ url_for('static', path='/js/common_part/header_footer.js') }} "></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

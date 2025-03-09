@@ -12,40 +12,31 @@
     <!-- Боковое меню -->
     <aside class="w-64 bg-white shadow-lg absolute h-full">
       <div class="p-4 space-y-2">
-        <a href="https://dashboard.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
-          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-          </svg>
-          Главная
-        </a>
-        
-        <a href="https://projects.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
-          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-          </svg>
-          Проекты
-        </a>
-        
-        <a href="https://tasks.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
+        <a href="/account" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
           </svg>
-          Задачи
+          Проекты и задачи
         </a>
-        
-        <!-- <a href="https://calendar.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
+                <a href="/assigned_tasks_page" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            <path d="M3 4C2.44772 4 2 4.44772 2 5V7C2 7.55228 2.44772 8 3 8H21C21.5523 8 22 7.55228 22 7V5C22 4.44772 21.5523 4 21 4H3ZM3 10C2.44772 10 2 10.4477 2 11V13C2 13.5523 2.44772 14 3 14H21C21.5523 14 22 13.5523 22 13V11C22 10.4477 21.5523 10 21 10H3ZM3 16C2.44772 16 2 16.4477 2 17V19C2 19.5523 2.44772 20 3 20H21C21.5523 20 22 19.5523 22 19V17C22 16.4477 21.5523 16 21 16H3Z"/>
           </svg>
-          Календарь
+          Статус задач
         </a>
-        
-        <a href="https://reports.example.com" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
+        <a href="/chat_page_enter" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            <path d="M7.83 9H16.17C16.67 9 17 9.33 17 9.83V14.17C17 14.67 16.67 15 16.17 15H7.83C7.33 15 7 14.67 7 14.17V9.83C7 9.33 7.33 9 7.83 9ZM2 4C2 2.89543 2.89543 2 4 2H20C21.1046 2 22 2.89543 22 4V16C22 17.1046 21.1046 18 20 18H6L2 22V4Z"/>
           </svg>
-          Отчеты
-        </a> -->
+          Чаты
+        </a>
+        <a href="/settings" class="nav-item flex items-center p-3 rounded-lg text-gray-700 hover:text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+          Настройки
+        </a>
+
       </div>
     </aside>
 
@@ -94,6 +85,7 @@
 {% block scripts %}
   {{ super() }} 
     <script src="{{ url_for('static', path='/js/personal_account/account.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/personal_account/sidebar_nav.js') }}"></script>
     <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_tasks.js') }}"></script>
     <script type='module' src="{{ url_for('static', path='/js/personal_account/fetch/account_get_project.js') }}"></script>
 {% endblock %}
