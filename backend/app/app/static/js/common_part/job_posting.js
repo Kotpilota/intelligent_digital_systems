@@ -1,16 +1,3 @@
-// Функционал фильтрации вакансий
-document.querySelector('.filters__form').addEventListener('input', (e) => {
-    // Здесь можно добавить логику фильтрации
-    console.log('Применение фильтров:', e.target.value);
-});
-
-// Обработка откликов на вакансии
-document.querySelectorAll('.job-card .button').forEach(button => {
-    button.addEventListener('click', () => {
-        alert('Спасибо за отклик! Мы свяжемся с вами в ближайшее время.');
-});
-});
-
 function createJobCard(job) {
     const article = document.createElement("article");
     article.className = "job-card";
@@ -66,6 +53,11 @@ function createJobCard(job) {
     button.className = "button";
     button.textContent = "Откликнуться";
     
+
+    button.addEventListener('click', () => {
+        alert('Спасибо за отклик! Мы свяжемся с вами в ближайшее время.');
+    });
+    
     article.append(title, company, details, description, button);
     return article;
 }
@@ -88,7 +80,6 @@ async function getJobs() {
         if (!response.ok) {
             throw new Error(`Ошибка HTTP: ${response.status}`);
         }
-
         const jobs = await response.json();
         
         container.innerHTML = '';

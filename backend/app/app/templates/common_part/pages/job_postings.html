@@ -11,15 +11,15 @@
   <main class="container">
     <section class="filters">
       <form class="filters__form">
-        <input type="text" class="filters__input" placeholder="Должность, ключевые слова">
-        <input type="text" class="filters__input" placeholder="Город">
-        <select class="filters__input">
+        <input type="text" class="filters__input" placeholder="Должность, ключевые слова" name="position">
+        <input type="text" class="filters__input" placeholder="Город" name="city" >
+        <select class="filters__input" name="employmentType" id="employmentTypeSelect">
           <option value="">Тип занятости</option>
           <option value="full">Полная</option>
           <option value="part">Частичная</option>
           <option value="remote">Удаленная</option>
         </select>
-        <select class="filters__input">
+        <select class="filters__input" name="level">
           <option value="">Уровень</option>
           <option value="junior">Junior</option>
           <option value="middle">Middle</option>
