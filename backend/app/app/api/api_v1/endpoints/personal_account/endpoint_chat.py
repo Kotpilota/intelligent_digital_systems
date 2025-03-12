@@ -101,3 +101,39 @@ async def websocket_endpoint(websocket: WebSocket, user_id: int):
     except WebSocketDisconnect:
         # Удаляем пользователя из активных соединений при отключении
         active_connections.pop(user_id, None)
+
+
+
+# WebRTC video streaming
+
+# Store publisher and subscriber WebSocket connections
+publisher = None
+subscriber = None
+
+@router.websocket("/ws/publisher")
+async def websocket_publisher(websocket: WebSocket):
+    global publisher
+    await websocket.accept()
+    publisher = websocket
+    try:
+        while True:
+            data = await websocket.receive_text()
+            if subscriber:
+                await subscriber.send_text(data)
+    except WebSocketDisconnect:
+        publisher = None
+        await websocket.close()
+
+@router.websocket("/ws/subscriber")
+async def websocket_subscriber(websocket: WebSocket):
+    global subscriber
+    await websocket.accept()
+    subscriber = websocket
+    try:
+        while True:
+            data = await websocket.receive_text()
+            if publisher:
+                await publisher.send_text(data)
+    except WebSocketDisconnect:
+        subscriber = None
+        await websocket.close()
