@@ -1,16 +1,43 @@
-// Функционал фильтрации вакансий
-document.querySelector('.filters__form').addEventListener('input', (e) => {
-    // Здесь можно добавить логику фильтрации
-    console.log('Применение фильтров:', e.target.value);
-});
+let allJobs = []
 
-// Обработка откликов на вакансии
-document.querySelectorAll('.job-card .button').forEach(button => {
-    button.addEventListener('click', () => {
-        alert('Спасибо за отклик! Мы свяжемся с вами в ближайшее время.');
-});
-});
+function renderJobs(jobs) {
+    const container = document.querySelector(".job-list");
+    container.innerHTML = '';
 
+    if (jobs.length === 0) {
+        container.innerHTML = '<p class="no-jobs">Нет подходящих вакансий</p>';
+        return;
+    }
+
+    jobs.forEach(job => {
+        const card = createJobCard(job);
+        container.appendChild(card);
+    });
+}
+
+function applyFilters() {
+    const form = document.querySelector('.filters__form');
+    const position = form.elements.position.value.trim().toLowerCase();
+    const city = form.elements.city.value.trim().toLowerCase();
+    const employmentType = form.elements.employmentType.value.toLowerCase();
+    const level = form.elements.level.value.toLowerCase();
+
+    const filteredJobs = allJobs.filter(job => {
+        const jobPosition = job.position?.toLowerCase() || '';
+        const jobCity = job.location?.city?.toLowerCase() || '';
+        const jobEmployment = job.employment_type?.type.toLowerCase() || '';
+        const jobLevel = job.employment_level?.level?.toLowerCase() || '';
+
+        const matchesPosition = jobPosition.includes(position);
+        const matchesCity = jobCity.includes(city);
+        const matchesEmployment = !employmentType || jobEmployment === employmentType;
+        const matchesLevel = !level || jobLevel === level;
+
+        return matchesPosition && matchesCity && matchesEmployment && matchesLevel;
+    });
+
+    renderJobs(filteredJobs);
+}
 function createJobCard(job) {
     const article = document.createElement("article");
     article.className = "job-card";
@@ -22,8 +49,7 @@ function createJobCard(job) {
     const company = document.createElement("div");
     company.className = "job-card__company";
     company.textContent = job.company || 'Компания не указана';
-
-
+    
     const details = document.createElement("div");
     details.className = "job-card__details";
 
@@ -50,7 +76,7 @@ function createJobCard(job) {
         ),
         createDetail(
             '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>',
-            job.employment_type?.type
+            job.employment_type?.type || 'Тип занятости не указан'  
         ),
         createDetail(
             '<path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
@@ -66,18 +92,17 @@ function createJobCard(job) {
     button.className = "button";
     button.textContent = "Откликнуться";
     
+
+    button.addEventListener('click', () => {
+        alert('Спасибо за отклик! Мы свяжемся с вами в ближайшее время.');
+    });
+    
     article.append(title, company, details, description, button);
     return article;
 }
 
 async function getJobs() {
     try {
-        const container = document.querySelector(".job-list");
-        if (!container) {
-            console.error("Контейнер для вакансий не найден!");
-            return;
-        }
-
         const response = await fetch('/job/read', {
             method: 'GET',
             headers: {
@@ -85,22 +110,10 @@ async function getJobs() {
             },
         });
 
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
 
-        const jobs = await response.json();
-        
-        container.innerHTML = '';
-        
-        if (jobs.length > 0) {
-            jobs.forEach(job => {
-                container.appendChild(createJobCard(job));
-            });
-        } else {
-            container.innerHTML = '<p class="no-jobs">Нет доступных вакансий</p>';
-        }
-
+        allJobs = await response.json();
+        renderJobs(allJobs);
     } catch (error) {
         console.error("Ошибка при загрузке вакансий:", error);
         const container = document.querySelector(".job-list");
@@ -121,6 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".search").addEventListener("click", function(event) {
         event.stopPropagation();
     });
+
+    
+    document.querySelector('.filters__form').addEventListener('input', applyFilters);
 
     window.addEventListener("click", function() {
         const search = document.querySelector(".search");
