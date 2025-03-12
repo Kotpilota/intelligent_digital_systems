@@ -11,6 +11,7 @@ document.querySelector(".vizov").addEventListener("click", () => {
 
 document.querySelector("#closeButton").addEventListener("click", () => {
   popup1.style.display = "none";
+  localVideo.srcObject = null;
 });
 
 popup1.addEventListener("mousedown", (e) => {
