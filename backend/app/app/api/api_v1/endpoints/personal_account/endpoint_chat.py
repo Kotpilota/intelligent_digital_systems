@@ -32,13 +32,14 @@ async def get_chat_page(request: Request,
 
 
 
-@router.get("/messages/{user_id}", response_model=List[MessageRead])
+@router.get("/messages/{user_id}", response_model=List[Message])
 async def get_messages(user_id: int, 
                        db: AsyncSession = Depends(deps.get_db), 
                        current_user: User = Depends(deps.get_current_user)
                        ):
     
-    return await crud.message.get_all_by_filter() MessagesDAO.get_messages_between_users(user_id_1=user_id, user_id_2=current_user.id) or []
+    return await crud.message.get_all_by_filter(db, {'sender_id': user_id, 'recepient_id': current_user.id}) 
+    #MessagesDAO.get_messages_between_users(user_id_1=user_id, user_id_2=current_user.id) or []
 
 
 
@@ -51,11 +52,13 @@ async def send_message(message: MessageCreate,
                        ):
     
     # Добавляем новое сообщение в базу данных
-    await MessagesDAO.add(
-        sender_id=current_user.id,
-        content=message.content,
-        recipient_id=message.recipient_id
+    await crud.message.create(db=db, 
+                              obj_in= MessageCreate(sender_id=current_user.id, 
+                                                           recipient_id=message.recipient_id, 
+                                                           content=message.content)
+
     )
+
     # Подготавливаем данные для отправки сообщения
     message_data = {
         'sender_id': current_user.id,
