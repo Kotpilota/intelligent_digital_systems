@@ -64,3 +64,26 @@ document.addEventListener("mousemove", (e) => {
   popup2.style.left = x + "px";
   popup2.style.top = y + "px";
 });
+const callButton = document.getElementById('callButton');
+const localVideo = document.getElementById('localVideo');
+const hangupButton=document.getElementById('hangupButton')
+callButton.addEventListener('click', async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true})
+    
+    localVideo.srcObject = stream;
+    hangupButton.disabled = false;
+  } catch (error) {
+    console.error('Ошибка при получении доступа к камере:', error);
+    alert('Не удалось получить доступ к камере. Пожалуйста, проверьте настройки доступа.');
+  }
+});
+hangupButton.addEventListener('click', () => {
+  localVideo.srcObject = null;
+})
+const startButton = document.getElementById('startButton');
+
+startButton.addEventListener('click', () => {
+
+    callButton.disabled = false;
+});
