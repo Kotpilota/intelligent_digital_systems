@@ -22,7 +22,7 @@ DEFAULT_USERS = [
         "firstname": "EMPLOYEE",
         "lastname": "EMPLOYEE",
         "password": "0123456789",
-        "email": "djeguede_marc@mail.ru",
+        "email": "test@gmail.com",
         "phone":  "+79153280354",
         "activated": True,
         "role_id": 1,
@@ -217,13 +217,13 @@ async def init_db(db: AsyncSession) -> None:
     jobs = [
             {
             'company' : 'Intelligent Digital Systems', 
-             'description':'test', 
-             'employment_level_id': 1,
-             'employment_type_id': 2,
-             'location_id': 3,
-             'position': 'test',
-             'salary': 500000
-             },
+            'description':'test', 
+            'employment_level_id': 1,
+            'employment_type_id': 2,
+            'location_id': 3,
+            'position': 'test',
+            'salary': 500000
+            },
 
              {
             'company' : 'LLC Yandex ', 
@@ -236,15 +236,15 @@ async def init_db(db: AsyncSession) -> None:
              },
              {
             'company' : 'VKontakte', 
-             'description':'Младший программист С/C++', 
-             'employment_level_id': 1,
-             'employment_type_id': 2,
-             'location_id': 3,
-             'position': 'test',
-             'salary': 500000
-             },
+            'description':'Младший программист С/C++', 
+            'employment_level_id': 1,
+            'employment_type_id': 2,
+            'location_id': 3,
+            'position': 'test',
+            'salary': 500000
+            },
 
-             {
+            {
             'company' : 'SuperJob', 
              'description':'Description', 
              'employment_level_id': 2,
