@@ -56,10 +56,10 @@ transition: width 0.3s ease-in-out;
 }
 .rs{
     display: flex;
-
-   
+    padding: 2%;
     align-items: center;
     margin-right: 270px;
+    justify-content: flex-start;
 }
 .search-button {
     background-color: transparent;
@@ -189,6 +189,7 @@ transition: width 0.3s ease-in-out;
     color: #fff;
     border-radius: 5px;
     box-sizing: border-box;
+    
   }
 
   .form-group textarea {

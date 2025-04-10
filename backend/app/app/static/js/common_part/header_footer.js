@@ -157,17 +157,14 @@ async function profile_data() {
         }
 
         const data = await response.json();
-
-        return data
+        profile_data(data);
     } catch (error) {
         console.error("Ошибка получения данных профиля:", error);
     }
 }
 
 const obj_profile_data = await profile_data()
-console.log(obj_profile_data)
 const login_button = document.querySelector(".change_account_button")
-console.log(login_button);
 if (obj_profile_data.phone == "string" || obj_profile_data.email == "string"){      
     login_button.innerHTML = "<button class='voity'>Войти</button>"
 } else{
