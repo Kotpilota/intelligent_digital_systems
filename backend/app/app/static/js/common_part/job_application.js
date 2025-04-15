@@ -4,7 +4,7 @@ const fileInput = fileUpload.querySelector('input[type="file"]');
 const progress = document.querySelector('.progress');
 const progressBar = document.querySelector('.progress-bar__fill');
 
-// Обработка перетаскивания файлов
+
 fileUpload.addEventListener('dragover', (e) => {
     e.preventDefault();
     fileUpload.style.borderColor = 'var(--primary-color)';
@@ -25,7 +25,7 @@ fileUpload.addEventListener('drop', (e) => {
     }
 });
 
-// Обновление имени файла при выборе
+
 fileInput.addEventListener('change', (e) => {
     if (e.target.files.length) {
         updateFileName(e.target.files[0].name);
@@ -37,13 +37,13 @@ function updateFileName(name) {
     span.textContent = name;
 }
 
-// Отправка формы
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     progress.classList.add('active');
 
-    // Имитация загрузки
+
     let width = 0;
     const interval = setInterval(() => {
         width += 5;
@@ -52,12 +52,35 @@ form.addEventListener('submit', async (e) => {
         if (width >= 100) {
             clearInterval(interval);
             setTimeout(() => {
-                alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+                alert('Р—Р°СЏРІРєР° СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅР°! РњС‹ СЃРІСЏР¶РµРјСЃСЏ СЃ РІР°РјРё РІ Р±Р»РёР¶Р°Р№С€РµРµ РІСЂРµРјСЏ.');
                 form.reset();
                 progress.classList.remove('active');
                 progressBar.style.width = '0%';
-                fileUpload.querySelector('span').textContent = 'Перетащите файл или нажмите для загрузки';
+                fileUpload.querySelector('span').textContent = 'РџРµСЂРµС‚Р°С‰РёС‚Рµ С„Р°Р№Р» РёР»Рё РЅР°Р¶РјРёС‚Рµ РґР»СЏ Р·Р°РіСЂСѓР·РєРё';
             }, 500);
         }
     }, 100);
 });
+
+async function setFile() {
+    try {
+        const response = await fetch('/file/create', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+        });
+
+        if (!response.ok) throw new Error(`РћС€РёР±РєР° HTTP: ${response.status}`);
+
+        new_file = await response.json();
+        setFile(allJobs);
+        console.log(new_file);
+    } catch (error) {
+        console.error("РћС€РёР±РєР° РїСЂРё РїСЂРёРєР»РёРїР»РµРЅРёРё С„Р°Р№Р»Р°:", error);
+        const fileErrorMessage = document.querySelector('.error-message');
+        if (fileErrorMessage) {
+            fileErrorMessage.innerHTML = `<p>РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С…: ${error.message}</p>`;
+        }
+    }
+}

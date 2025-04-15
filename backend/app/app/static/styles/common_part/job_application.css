@@ -152,3 +152,7 @@ textarea.form-input {
         padding: 20px;
     }
 }
+
+.error-message{
+    display: none;
+}
