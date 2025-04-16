@@ -37,27 +37,54 @@ function updateFileName(name) {
     span.textContent = name;
 }
 
-
-form.addEventListener('submit', async (e) => {
+document.getElementById('jobApplicationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    progress.classList.add('active');
+    const formData = new FormData(e.target);
+    const file = formData.get('myfile');
 
+    try {
+        const fileFormData = new FormData();
+        fileFormData.append('myfile', file);
 
-    let width = 0;
-    const interval = setInterval(() => {
-        width += 5;
-        progressBar.style.width = width + '%';
+        const fileResponse = await fetch('/file/create', {
+            method: 'POST',
+            body: fileFormData,
+            credentials: 'include'
+        });
 
-        if (width >= 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
-                form.reset();
-                progress.classList.remove('active');
-                progressBar.style.width = '0%';
-                fileUpload.querySelector('span').textContent = 'Перетащите файл или нажмите для загрузки';
-            }, 500);
+        if (!fileResponse.ok) {
+            const error = await fileResponse.json();
+            throw new Error(`Ошибка загрузки файла: ${error.detail}`);
         }
-    }, 100);
+
+        const fileResult = await fileResponse.json();
+
+        const jsonData = {
+            ...Object.fromEntries(formData),
+            file_id: fileResult.id
+        };
+
+        const formResponse = await fetch('/job-applications/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData),
+            credentials: 'include'
+        });
+
+        if (!formResponse.ok) {
+            const error = await formResponse.json();
+            throw new Error(`Ошибка отправки формы: ${error.detail}`);
+        }
+
+        const formResult = await formResponse.json();
+        console.log('Результаты:', {file: fileResult, form: formResult});
+        alert('Данные успешно отправлены!');
+
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert(error.message);
+    }
 });

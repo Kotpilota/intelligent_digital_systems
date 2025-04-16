@@ -12,28 +12,28 @@
       <form id="jobApplicationForm">
         <div class="form-group">
           <label class="form-label">ФИО</label>
-          <input type="text" class="form-input" required>
+          <input type="text" class="form-input" name="full_name" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Email</label>
-          <input type="email" class="form-input" required>
+          <input type="email" class="form-input" name="email" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Телефон</label>
-          <input type="tel" class="form-input" required>
+          <input type="tel" class="form-input" name="phone" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Сопроводительное письмо</label>
-          <textarea class="form-input" required></textarea>
+          <textarea class="form-input" name="description" required></textarea>
         </div>
 
         <div class="form-group">
           <label class="form-label">Резюме</label>
           <label class="file-upload">
-            <input type="file" hidden accept=".pdf,.doc,.docx">
+            <input type="file" name="myfile" hidden accept=".pdf,.doc,.docx">
             <svg class="file-upload__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
               <polyline points="14 2 14 8 20 8"></polyline>
