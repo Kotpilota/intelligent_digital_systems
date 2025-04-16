@@ -31,7 +31,4 @@ export BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS}  # 4
 # run gunicorn
 exec gunicorn --bind $HOST:$PORT "$APP_MODULE" -k uvicorn.workers.UvicornWorker  # 5
 
-if [ -d /app/static_source ] && [ "$(ls -A /app/static 2>/dev/null)" == "" ]; then
-    echo "Static volume is empty, copying static files from source..."
-    cp -r /app/static_source/* /app/static/
-fi
+
