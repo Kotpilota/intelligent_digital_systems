@@ -28,14 +28,24 @@ ARG INSTALL_DEV=false
 
 RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --without dev ; fi"
 
+# Copy application code
 COPY ./app /app
+
+# Create necessary directories
+RUN mkdir -p /app/files /app/alembic/versions /app/data
+
+# Ensure static directory exists and has proper permissions
+RUN mkdir -p /app/static && \
+    chmod -R 755 /app/static
+
+# Make scripts executable
 RUN chmod +x /app/run.sh
+RUN if [ -f /app/prestart.sh ]; then chmod +x /app/prestart.sh; fi
 
 ENV PYTHONPATH=/app
 
-# create directories for files and make them writable by app user
-RUN mkdir -p /app/files /app/alembic/versions /app/data && \
-    chown -R app:app /app
+# Give proper ownership to the app user
+RUN chown -R app:app /app
 
 # change to the app user
 USER app
