@@ -21,7 +21,7 @@ services:
     image: kotpilota/ids_nginx:latest
     restart: always
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - ids_static:/static
       - ids_media:/media
