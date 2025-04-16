@@ -12,3 +12,4 @@ alembic_old
 *.db
 *.sqlite3
 *.sqlite
+backend/app/output/
