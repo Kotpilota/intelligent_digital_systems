@@ -1,14 +1,14 @@
 {% extends "common_part/base.html" %}
 {% block title %}Отклик на вансии{% endblock %}
 {% block styles %}
-  {{ super() }} 
+  {{ super() }}
   <link rel="stylesheet" href="{{ url_for('static', path='/styles/common_part/job_application.css') }} " />
 {% endblock %}
 {% block content %}
   <main class="container">
     <section class="job-apply">
       <h1 class="form-title">Отклик на вакансию Senior Frontend Developer</h1>
-      
+
       <form id="jobApplicationForm">
         <div class="form-group">
           <label class="form-label">ФИО</label>

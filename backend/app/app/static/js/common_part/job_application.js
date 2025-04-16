@@ -61,26 +61,3 @@ form.addEventListener('submit', async (e) => {
         }
     }, 100);
 });
-
-async function setFile() {
-    try {
-        const response = await fetch('/file/create', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-        });
-
-        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
-
-        new_file = await response.json();
-        setFile(allJobs);
-        console.log(new_file);
-    } catch (error) {
-        console.error("Ошибка при приклиплении файла:", error);
-        const fileErrorMessage = document.querySelector('.error-message');
-        if (fileErrorMessage) {
-            fileErrorMessage.innerHTML = `<p>Ошибка загрузки данных: ${error.message}</p>`;
-        }
-    }
-}
