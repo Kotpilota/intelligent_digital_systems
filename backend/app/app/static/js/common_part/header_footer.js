@@ -3,6 +3,7 @@ searchbut.addEventListener("click",function(event){
             event.stopPropagation();
             document.querySelector(".search").style.width="200px";
             document.querySelector(".search").style.marginLeft="20px"
+            document.querySelector(".search").style.opacity="1"
 
 
 })
@@ -11,17 +12,16 @@ document.querySelector(".search").addEventListener("click",function(event){
 window.addEventListener("click",function(){
     document.querySelector(".search").style.width="0px";
     document.querySelector(".search").style.marginLeft="0px"
+    document.querySelector(".search").style.opacity="0"
 
 })
 
 const modalTrigger = document.querySelector(".voity");
-const windowInnerWidth = document.documentElement.clientWidth;
 const scrollbarWidth = parseInt(window.innerWidth) - parseInt(document.documentElement.clientWidth);
 
 const bodyElementHTML = document.getElementsByTagName("header")[0];
 const modalBackground = document.getElementsByClassName("modalBackground")[0];
 const modalClose = document.getElementsByClassName("modalClose")[0];
-const modalActive = document.getElementsByClassName("modalActive")[0];
 
 function bodyMargin() {
     bodyElementHTML.style.marginRight = "-" + scrollbarWidth + "px";

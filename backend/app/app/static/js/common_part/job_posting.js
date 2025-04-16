@@ -88,13 +88,14 @@ function createJobCard(job) {
     description.className = "job-card__description";
     description.textContent = job.description || 'Описание отсутствует';
 
-    const button = document.createElement("button");
+    const button = document.createElement("a");
     button.className = "button";
     button.textContent = "Откликнуться";
+    button.href = `/job_application`;
     
 
     button.addEventListener('click', () => {
-        alert('Спасибо за отклик! Мы свяжемся с вами в ближайшее время.');
+        window.location.href(`/job_application`);
     });
     
     article.append(title, company, details, description, button);

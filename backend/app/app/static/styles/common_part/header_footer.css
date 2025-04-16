@@ -1,6 +1,7 @@
 .header{
     width: 100%;
     height: 86px;
+    position: sticky;
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
@@ -21,7 +22,7 @@
     width: 50%;
     height: 100%;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .h1tag{
     display: flex;
@@ -37,34 +38,28 @@ width: 45px;
 height: 20px;
 background-color: white;
 position: relative;
-left: 20px;
 outline: none;
 border: none;
+  margin-right: 2%;
 }
 .search{
-  width: 45px;
-height: 20px;
-color: #555;
-border: none;
-padding: 10px;
-width: 0; 
-flex-grow: 1;
-outline: none;
-transition: width 0.3s ease-in-out;
+  height: 8px;
+  color: #555;
+  border: 1px solid black;
+  padding: 10px;
+  outline: none;
+  transition: width 0.3s ease-in-out;
+  width: 0px;
+  opacity: 0;
 }
-.rs{
-    display: flex;
-    padding: 2%;
-    align-items: center;
-    margin-right: 270px;
-    justify-content: flex-start;
-}
+
 .search-button {
-    background-color: transparent;
+  background-image: url("../../assets/search.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
     border: none;
     padding: 10px;
     cursor: pointer;
-    outline: none;
   }
   .searchimg{
     width: 20px;
