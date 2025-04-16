@@ -31,6 +31,9 @@ RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; els
 # Copy application code
 COPY ./app /app
 
+# Create a backup of static files to ensure volume initialization
+COPY ./app/static /app/static_source
+
 # Create necessary directories
 RUN mkdir -p /app/files /app/alembic/versions /app/data
 
@@ -41,6 +44,21 @@ RUN mkdir -p /app/static && \
 # Make scripts executable
 RUN chmod +x /app/run.sh
 RUN if [ -f /app/prestart.sh ]; then chmod +x /app/prestart.sh; fi
+
+# Add script to initialize static files if volume is empty
+RUN echo '#!/bin/bash\n\
+if [ -d /app/static_source ] && [ "$(ls -A /app/static 2>/dev/null)" == "" ]; then\n\
+    echo "Static volume is empty, copying static files from source..."\n\
+    cp -r /app/static_source/* /app/static/\n\
+fi' > /app/init_static.sh && \
+    chmod +x /app/init_static.sh
+
+# Modify run.sh to include static file initialization
+RUN if grep -q "exec gunicorn" /app/run.sh; then \
+    sed -i '/exec gunicorn/ i\. /app/init_static.sh' /app/run.sh; \
+    else \
+    echo "Warning: Could not find 'exec gunicorn' line in run.sh to add static file initialization"; \
+    fi
 
 ENV PYTHONPATH=/app
 
