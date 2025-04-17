@@ -12,7 +12,7 @@ from app.api.api_v1.endpoints.admin import (
     )
 from  app.api.api_v1.endpoints.common_part import (
     endpoint_mainpage, endpoint_case_detail, endpoint_case_list,
-    endpoint_cv_detail, endpoint_employee_list, endpoint_job_application, 
+    endpoint_cv_detail, endpoint_employee_list,
     endpoint_job_postings
     )
 
@@ -79,7 +79,6 @@ api_router.include_router(endpoint_case_list.router, prefix="", tags=["case_list
 api_router.include_router(endpoint_cv_detail.router, prefix="", tags=["cv_detail"])
 api_router.include_router(endpoint_employee_list.router, prefix="", tags=["employee_list"])
 api_router.include_router(endpoint_job_postings.router, prefix="", tags=["job_postings"])
-api_router.include_router(endpoint_job_application.router, prefix="", tags=["job_application"])
 
 # personal_account page
 api_router.include_router(endpoint_account.router, prefix="", tags=["account"])
