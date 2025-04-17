@@ -30,3 +30,5 @@ export BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS}  # 4
 
 # run gunicorn
 exec gunicorn --bind $HOST:$PORT "$APP_MODULE" -k uvicorn.workers.UvicornWorker  # 5
+
+

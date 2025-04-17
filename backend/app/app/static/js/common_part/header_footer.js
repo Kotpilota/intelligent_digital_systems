@@ -1,8 +1,8 @@
 let searchbut=document.querySelector(".search-button")
 searchbut.addEventListener("click",function(event){
-            event.stopPropagation();
-            document.querySelector(".search").style.width="200px";
-            document.querySelector(".search").style.marginLeft="20px"
+    event.stopPropagation();
+    document.querySelector(".search").style.width="200px";
+    document.querySelector(".search").style.marginLeft="20px"
 
 
 })
@@ -31,21 +31,21 @@ bodyMargin();
 
 modalTrigger.addEventListener("click", function () {
     modalBackground.style.display = "flex";
-    document.body.style.overflow = "hidden"; 
+    document.body.style.overflow = "hidden";
 });
 
 
 modalBackground.addEventListener("click", function(event) {
-    if (event.target === modalBackground) { 
-    modalBackground.style.display = "none";
-    document.body.style.overflow = "auto";
+    if (event.target === modalBackground) {
+        modalBackground.style.display = "none";
+        document.body.style.overflow = "auto";
     }
 });
 
 
 document.querySelectorAll('.auth-form input, .auth-form button').forEach(element => {
     element.addEventListener('click', function(event) {
-    event.stopPropagation(); 
+        event.stopPropagation();
     });
 });
 
@@ -56,10 +56,10 @@ modalClose.addEventListener("click", function () {
 
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
+
     const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
-    
+
     try {
         const response = await fetch("/auth/login", {
             method: "POST",
@@ -71,11 +71,11 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
                 phone: phone,
                 password: password
             }),
-            credentials: 'include' 
+            credentials: 'include'
         });
 
         const data = await response.json();
-        
+
         if (response.ok) {
             modalBackground.style.display = "none";
             document.body.style.overflow = "auto";
@@ -100,7 +100,7 @@ function showError(message) {
     const errorDiv = document.getElementById('errorMessage');
     errorDiv.textContent = message;
     errorDiv.style.display = 'block';
-    
+
     setTimeout(() => {
         errorDiv.style.display = 'none';
     }, 5000);
@@ -109,37 +109,37 @@ function showError(message) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-const footerForm = document.querySelector('.footer-right form');
+    const footerForm = document.querySelector('.footer-right form');
 
-footerForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('name').value || 'Не указано';
-    const phone = document.getElementById('phone').value || 'Не указано';
-    const email = document.getElementById('email').value || 'Не указано';
-    const message = document.getElementById('message').value || 'Не указано';
-    const fileInput = document.getElementById('file');
-    const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'Файл не прикреплен';
-    
-    const recipientEmail = 'support@ids.com';
-    
-    const subject = 'Заявка на обсуждение проекта от ' + name;
-    
-    let body = 'Информация о заявке:\n\n';
-    body += 'Имя: ' + name + '\n';
-    body += 'Телефон: ' + phone + '\n';
-    body += 'Email: ' + email + '\n\n';
-    body += 'Сообщение:\n' + message + '\n\n';
-    body += 'Файл: ' + fileName + '\n\n';
-    body += 'Примечание: Файлы не прикрепляются автоматически. Пожалуйста, прикрепите их вручную к этому письму.';
-    
-    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' + 
-                    '&to=' + encodeURIComponent(recipientEmail) + 
-                    '&su=' + encodeURIComponent(subject) + 
-                    '&body=' + encodeURIComponent(body);
-    
-    window.open(gmailUrl, '_blank');
-});
+    footerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value || 'Не указано';
+        const phone = document.getElementById('phone').value || 'Не указано';
+        const email = document.getElementById('email').value || 'Не указано';
+        const message = document.getElementById('message').value || 'Не указано';
+        const fileInput = document.getElementById('file');
+        const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'Файл не прикреплен';
+
+        const recipientEmail = 'support@ids.com';
+
+        const subject = 'Заявка на обсуждение проекта от ' + name;
+
+        let body = 'Информация о заявке:\n\n';
+        body += 'Имя: ' + name + '\n';
+        body += 'Телефон: ' + phone + '\n';
+        body += 'Email: ' + email + '\n\n';
+        body += 'Сообщение:\n' + message + '\n\n';
+        body += 'Файл: ' + fileName + '\n\n';
+        body += 'Примечание: Файлы не прикрепляются автоматически. Пожалуйста, прикрепите их вручную к этому письму.';
+
+        const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
+            '&to=' + encodeURIComponent(recipientEmail) +
+            '&su=' + encodeURIComponent(subject) +
+            '&body=' + encodeURIComponent(body);
+
+        window.open(gmailUrl, '_blank');
+    });
 });
 
 async function profile_data() {
@@ -157,15 +157,17 @@ async function profile_data() {
         }
 
         const data = await response.json();
-        profile_data(data);
+        return data
     } catch (error) {
         console.error("Ошибка получения данных профиля:", error);
     }
 }
 
 const obj_profile_data = await profile_data()
+console.log(obj_profile_data)
 const login_button = document.querySelector(".change_account_button")
-if (obj_profile_data.phone == "string" || obj_profile_data.email == "string"){      
+console.log(login_button);
+if (obj_profile_data.phone == "string" || obj_profile_data.email == "string"){
     login_button.innerHTML = "<button class='voity'>Войти</button>"
 } else{
     login_button.innerHTML = '<div class="user-profile"><span class="user-avatar">AK</span><span class="user-nickname">AlexKing123</span></div>'

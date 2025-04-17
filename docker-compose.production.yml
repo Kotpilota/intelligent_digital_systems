@@ -1,18 +1,12 @@
 version: '3.8'
 
-volumes:
-  ids_static:
-  ids_media:
-  ids_data:
-
 services:
   backend:
     image: kotpilota/ids_backend:latest
     restart: always
     volumes:
-      - ids_static:/app/static
-      - ids_media:/app/files
-      - ids_data:/app/data
+      - ./files:/app/files
+      - ./data:/app/data
     env_file: .env
     expose:
       - "80"
@@ -21,9 +15,8 @@ services:
     image: kotpilota/ids_nginx:latest
     restart: always
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
-      - ids_static:/static
-      - ids_media:/media
+      - ./static:/static
     depends_on:
       - backend
