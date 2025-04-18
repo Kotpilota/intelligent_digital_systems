@@ -6,10 +6,7 @@ RUN addgroup --system app && adduser --system --group app
 WORKDIR /app/
 
 # https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE
-# Prevents Python from writing .pyc files to disk
 ENV PYTHONDONTWRITEBYTECODE 1
-
-# ensures that the python output is sent straight to terminal
 ENV PYTHONUNBUFFERED 1
 ENV ENVIRONMENT prod
 ENV TESTING 0
@@ -28,17 +25,11 @@ ARG INSTALL_DEV=false
 
 RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --without dev ; fi"
 
-# Copy application code
+# Copy application code (это скопирует и директорию static)
 COPY ./app /app
 
 # Create necessary directories
 RUN mkdir -p /app/files /app/alembic/versions /app/data
-
-# Create static directory and add basic CSS and JS files
-RUN mkdir -p /app/static/css /app/static/js /app/static/images && \
-    echo "/* Base CSS file */" > /app/static/css/styles.css && \
-    echo "// Base JavaScript file" > /app/static/js/script.js && \
-    chmod -R 755 /app/static
 
 # Make scripts executable
 RUN chmod +x /app/run.sh
@@ -52,5 +43,5 @@ RUN chown -R app:app /app
 # change to the app user
 USER app
 
-# Run the run script, it will check for an /app/prestart.sh script and then will start Uvicorn
+# Run the run script
 CMD ["./run.sh"]
