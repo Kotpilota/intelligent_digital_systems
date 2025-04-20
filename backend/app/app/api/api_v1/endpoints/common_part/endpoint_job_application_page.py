@@ -12,7 +12,7 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
 
 @router.get(
-    "/job_application",
+    "/job_application_page",
     response_class=HTMLResponse,
     summary="Заявление о приеме на работу",
 )

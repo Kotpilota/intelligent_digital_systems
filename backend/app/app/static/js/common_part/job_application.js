@@ -37,6 +37,7 @@ function updateFileName(name) {
     span.textContent = name;
 }
 
+
 document.getElementById('jobApplicationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -65,7 +66,7 @@ document.getElementById('jobApplicationForm').addEventListener('submit', async (
             file_id: fileResult.id
         };
 
-        const formResponse = await fetch('/job-applications/create', {
+        const formResponse = await fetch('/job_application/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
