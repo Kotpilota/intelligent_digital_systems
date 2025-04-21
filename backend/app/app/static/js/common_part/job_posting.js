@@ -91,7 +91,7 @@ function createJobCard(job) {
     const button = document.createElement("a");
     button.className = "button";
     button.textContent = "Откликнуться";
-    button.href = `/job-application-page?id=${job.id}`;
+    button.href = `/job_application_page/${job.id}`;
     
 
     button.addEventListener('click', () => {

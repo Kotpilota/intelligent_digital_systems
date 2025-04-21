@@ -41,10 +41,14 @@ function updateFileName(name) {
 document.getElementById('jobApplicationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const file = formData.get('myfile');
+    progress.classList.add('active');
 
     try {
+        const file = fileInput.files[0];
+        if (!file) {
+            throw new Error('Необходимо загрузить резюме');
+        }
+
         const fileFormData = new FormData();
         fileFormData.append('myfile', file);
 
@@ -60,33 +64,51 @@ document.getElementById('jobApplicationForm').addEventListener('submit', async (
         }
 
         const fileResult = await fileResponse.json();
-        console.log(fileResult);
 
-        const jsonData = {
-            ...Object.fromEntries(formData),
-            file_id: fileResult.id
+        progressBar.style.width = '50%';
+
+        const formData = new FormData(form);
+        const jobData = {
+            fullname: formData.get('fullname'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            letter: formData.get('letter'),
+            job_id: parseInt(formData.get('job_id')),
+            cv_id: fileResult.id
         };
 
-        const formResponse = await fetch('/job_application/create', {
+        const applicationResponse = await fetch('/job_application/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(jsonData),
+            body: JSON.stringify(jobData),
             credentials: 'include'
         });
 
-        if (!formResponse.ok) {
-            const error = await formResponse.json();
-            throw new Error(`Ошибка отправки формы: ${error.detail}`);
+        if (!applicationResponse.ok) {
+            const error = await applicationResponse.json();
+            throw new Error(`Ошибка отправки заявки: ${error.detail}`);
         }
 
-        const formResult = await formResponse.json();
-        console.log('Результаты:', {file: fileResult, form: formResult});
-        alert('Данные успешно отправлены!');
+        progressBar.style.width = '100%';
+
+        setTimeout(() => {
+            alert('Ваша заявка успешно отправлена!');
+            window.location.href = '/job_postings';
+        }, 500);
 
     } catch (error) {
         console.error('Ошибка:', error);
-        alert(error.message);
+
+        const errorMessage = document.querySelector('.error-message');
+        errorMessage.textContent = error.message;
+        errorMessage.style.display = 'block';
+
+        progressBar.style.width = '0%';
+    } finally {
+        setTimeout(() => {
+            progress.classList.remove('active');
+        }, 2000);
     }
 });

@@ -1,5 +1,5 @@
 {% extends "common_part/base.html" %}
-{% block title %}Отклик на вансии{% endblock %}
+{% block title %}Отклик на вакансию {{ job.position }}{% endblock %}
 {% block styles %}
   {{ super() }}
   <link rel="stylesheet" href="{{ url_for('static', path='/styles/common_part/job_application.css') }} " />
@@ -7,12 +7,17 @@
 {% block content %}
   <main class="container">
     <section class="job-apply">
-      <h1 class="form-title" id="title">Отклик на вакансию Senior Frontend Developer</h1>
+      <h1 class="form-title" id="title">Отклик на вакансию: {{ job.position }}</h1>
+      <div class="job-details">
+        <p><strong>Компания:</strong> {{ job.company }}</p>
+        <p><strong>Зарплата:</strong> {{ job.salary }} ₽</p>
+        <p><strong>Описание:</strong> {{ job.description }}</p>
+      </div>
 
       <form id="jobApplicationForm">
         <div class="form-group">
           <label class="form-label">ФИО</label>
-          <input type="text" class="form-input" name="full_name" required>
+          <input type="text" class="form-input" name="fullname" required>
         </div>
 
         <div class="form-group">
@@ -27,7 +32,7 @@
 
         <div class="form-group">
           <label class="form-label">Сопроводительное письмо</label>
-          <textarea class="form-input" name="description" required></textarea>
+          <textarea class="form-input" name="letter" required></textarea>
         </div>
 
         <div class="form-group">
@@ -44,6 +49,9 @@
           </label>
         </div>
 
+        <!-- Скрытое поле для ID вакансии -->
+        <input type="hidden" name="job_id" value="{{ job.id }}">
+
         <button type="submit" class="button">Отправить заявку</button>
         <div class="error-message"></div>
         <div class="progress">
@@ -59,4 +67,3 @@
 <script src="{{ url_for('static', path='/js/common_part/job_application.js') }} "></script>
 {{ super() }}
 {% endblock %}
-
