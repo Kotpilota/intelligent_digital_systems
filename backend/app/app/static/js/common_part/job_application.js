@@ -60,6 +60,7 @@ document.getElementById('jobApplicationForm').addEventListener('submit', async (
         }
 
         const fileResult = await fileResponse.json();
+        console.log(fileResult);
 
         const jsonData = {
             ...Object.fromEntries(formData),
