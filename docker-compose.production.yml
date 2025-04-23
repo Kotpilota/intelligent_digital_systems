@@ -1,26 +1,43 @@
 version: '3.8'
 
+volumes:
+  pg_data:
+  static_volume:
+  media_volume:
+  files_volume:
+  data_volume:
+
 services:
+  db:
+    image: postgres:13
+    volumes:
+      - pg_data:/var/lib/postgresql/data/pgdata
+    env_file: .env
+    restart: always
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
   backend:
     image: kotpilota/ids_backend:latest
     restart: always
+    depends_on:
+      - db
     volumes:
-      - ./files:/app/files
-      - ./data:/app/data
-      - static_data:/app/static
+      - static_volume:/app/static
+      - media_volume:/app/media
+      - files_volume:/app/files
+      - data_volume:/app/data
     env_file: .env
-    expose:
-      - "80"
 
   nginx:
     image: kotpilota/ids_nginx:latest
     restart: always
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
-      - static_data:/static
+      - static_volume:/static
+      - media_volume:/media
+      - files_volume:/app/files
+      - data_volume:/app/data
     depends_on:
       - backend
-
-volumes:
-  static_data:

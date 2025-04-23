@@ -25,15 +25,15 @@ ARG INSTALL_DEV=false
 
 RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --without dev ; fi"
 
-# Copy application code (это скопирует и директорию static)
+# Copy application code
 COPY ./app /app
 
 # Create necessary directories
-RUN mkdir -p /app/files /app/alembic/versions /app/data
+RUN mkdir -p /app/files /app/alembic/versions /app/data /app/static /app/media
 
-# Make scripts executable
-RUN chmod +x /app/run.sh
-RUN if [ -f /app/prestart.sh ]; then chmod +x /app/prestart.sh; fi
+# Copy and make entrypoint executable
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
 
 ENV PYTHONPATH=/app
 
@@ -43,5 +43,6 @@ RUN chown -R app:app /app
 # change to the app user
 USER app
 
-# Run the run script
-CMD ["./run.sh"]
+# Run the entrypoint script and then the app
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "app.main:app"]
