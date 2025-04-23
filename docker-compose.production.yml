@@ -20,6 +20,8 @@ services:
   backend:
     image: kotpilota/ids_backend:latest
     restart: always
+    expose:
+      - "80"
     depends_on:
       - db
     volumes:
@@ -33,7 +35,7 @@ services:
     image: kotpilota/ids_nginx:latest
     restart: always
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - static_volume:/static
       - media_volume:/media
