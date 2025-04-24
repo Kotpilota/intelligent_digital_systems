@@ -168,9 +168,9 @@ console.log(obj_profile_data)
 const login_button = document.querySelector(".change_account_button")
 console.log(login_button);
 if (obj_profile_data.phone == "string" || obj_profile_data.email == "string"){
-    login_button.innerHTML = "<button class='voity'>Войти</button>"
+    login_button.innerHTML = `<button class='voity'>Войти</button>`
 } else{
-    login_button.innerHTML = '<div class="user-profile"><span class="user-avatar">AK</span><span class="user-nickname">AlexKing123</span></div>'
+    login_button.innerHTML = `<div class="user-profile"><span class="user-avatar">${obj_profile_data.firstname[0]}</span><span class="user-nickname"></span></div>`
 }
 login_button.addEventListener("click", function() {
     window.location.href = "/profile"
